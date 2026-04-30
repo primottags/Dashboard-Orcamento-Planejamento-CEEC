@@ -306,7 +306,7 @@ var CONSELHEIROS=[
   {name:"Jose da Silva Neves",tipo:"titular"},
   {name:"Rui Dinamar Andrade",tipo:"titular"},
   {name:"Janilton Maciel Ugulino",tipo:"titular"},
-  {name:"Glayce Gabriela Nascimento Dias",tipo:"suplente"}
+  {name:"Glayce Gabriela Nascimento Dias",tipo:"suplente",titularDe:"Arthemio Scardino Guimaraes Junior"}
 ];
  
 // EVENTS — dados da planilha atualizada
@@ -318,7 +318,7 @@ var EVENTS=[
   {id:5,name:"Reunião Ordinária CEEC – Santarém",date:"A definir",local:"Santarém",vagas:8,enrolled:["Patricia Lima Vieira Philippsen","Helena Mendes dos Santos Fernandes"],diarias:2,vDiaria:635,passagem:1300,at:185,inscricao:0,jeton:300,valor:22040,tipo:"internal",obs:""},
   {id:6,name:"MundoGeo Connect 2026",date:"16 a 18 jun",local:"São Paulo – SP",vagas:1,enrolled:["Carolina da Silva Gonçalves"],diarias:3.5,vDiaria:829,passagem:2500,at:185,inscricao:1800,valor:7386.50,tipo:"consolidated",obs:"1 vaga + analista CREA"},
   {id:7,name:"XIV Conferência Nacional de Engenharia Ambiental – CONEAS 2026",date:"A definir",local:"Palmas – TO",vagas:2,enrolled:["Helena Mendes dos Santos Fernandes"],diarias:3.5,vDiaria:829,passagem:3200,at:185,inscricao:1800,valor:16173,tipo:"pending",obs:"1 vaga confirmada, 1 em aberto"},
-  {id:8,name:"37ª Encontro Técnico AESABESP – FENASAN 2026",date:"A definir",local:"A definir",vagas:2,enrolled:["Valdinei Mendes da Silva","Helena Mendes dos Santos Fernandes"],diarias:3.5,vDiaria:829,passagem:2500,at:185,inscricao:2500,valor:16173,tipo:"consolidated",hasSuplente:false,coordenador:"Valdinei Mendes da Silva",suplenteBloqueada:"Glayce Gabriela Nascimento Dias",obs:"✅ Vagas preenchidas: Valdinei Mendes da Silva (Coordenador – prioridade) e Helena Mendes dos Santos Fernandes. Glayce Gabriela Nascimento Dias (suplente de Valdinei) está impedida de participar pois seu titular está presente — Art. 45, §2º do Regimento."},
+  {id:8,name:"37ª Encontro Técnico AESABESP – FENASAN 2026",date:"A definir",local:"A definir",vagas:2,enrolled:["Valdinei Mendes da Silva","Helena Mendes dos Santos Fernandes"],diarias:3.5,vDiaria:829,passagem:2500,at:185,inscricao:2500,valor:16173,tipo:"consolidated",hasSuplente:false,coordenador:"Valdinei Mendes da Silva",obs:"✅ Vagas preenchidas: Valdinei Mendes da Silva (Coordenador – prioridade) e Helena Mendes dos Santos Fernandes. Glayce Gabriela Nascimento Dias é suplente de Arthemio Scardino Guimaraes Junior (não inscrito) — pode participar caso haja vaga disponível."},
   {id:9,name:"XXIV COBREAP",date:"A definir",local:"A definir",vagas:4,enrolled:["Arthemio Scardino Guimaraes Junior","Jose da Silva Neves","Alexandre de Moraes Ferreira","Patricia Lima Vieira Philippsen"],diarias:3.5,vDiaria:829,passagem:2500,at:185,inscricao:2500,valor:32346,tipo:"consolidated",obs:"Vagas preenchidas"},
   {id:10,name:"67ª IBRACON",date:"28 set a 03 out",local:"Natal – RN",vagas:4,enrolled:["Irandir de Castro Diniz","Marcus Vinicius Figueiredo Leal","Janilton Maciel Ugulino"],diarias:5,vDiaria:829,passagem:2200,at:185,inscricao:1800,valor:33320,tipo:"pending",obs:"3 vagas confirmadas, 1 em aberto"},
   {id:11,name:"Semana de Barragens",date:"20 a 26 set",local:"Belém – PA",vagas:4,enrolled:[],diarias:0,vDiaria:829,passagem:0,at:185,inscricao:2500,valor:10740,tipo:"pending",obs:"Evento local – vagas abertas"},
@@ -366,13 +366,26 @@ function getAllEvents(){return EVENTS.concat(getPromoted());}
  
 // ============ MODAL ============
 var _mRes=null;
-function showModal(title,msg){
+function showModal(title,msg,infoOnly){
   document.getElementById('modal-title').textContent=title;
   document.getElementById('modal-msg').textContent=msg;
+  var cancelBtn=document.querySelector('.modal-btn.cancel');
+  var confirmBtn=document.querySelector('.modal-btn.confirm');
+  if(infoOnly){
+    cancelBtn.textContent='Fechar';
+    confirmBtn.style.display='none';
+  } else {
+    cancelBtn.textContent='Cancelar';
+    confirmBtn.style.display='';
+  }
   document.getElementById('modal').classList.add('show');
   return new Promise(function(res){_mRes=res;});
 }
-function resolveModal(v){document.getElementById('modal').classList.remove('show');if(_mRes){_mRes(v);_mRes=null;}}
+function resolveModal(v){
+  document.getElementById('modal').classList.remove('show');
+  document.querySelector('.modal-btn.confirm').style.display='';
+  if(_mRes){_mRes(v);_mRes=null;}
+}
  
 // ============ TOAST ============
 var _tt=null;
@@ -458,9 +471,8 @@ function renderEvents(){
     var obs=ed.obs||ev.obs;
  
     // Tags
-    var isCoordEvent=!!ev.coordenador;
-    var bloqueada=ev.suplenteBloqueada||null;
- 
+    // Para cada suplente, verifica se o SEU titular está inscrito neste evento
+    // Glayce é suplente de Arthemio — bloqueada somente se Arthemio estiver presente
     var tags=CONSELHEIROS.map(function(c){
       var isEnr=allEnr.some(function(n){return n.toLowerCase().indexOf(c.name.split(' ')[0].toLowerCase())>=0||c.name.toLowerCase().indexOf(n.split(' ')[0].toLowerCase())>=0;});
       var isSup=c.tipo==='suplente';
@@ -469,8 +481,17 @@ function renderEvents(){
       var idx=allEnr.findIndex(function(n){return n.toLowerCase().indexOf(c.name.split(' ')[0].toLowerCase())>=0||c.name.toLowerCase().indexOf(n.split(' ')[0].toLowerCase())>=0;});
       var isExcess=isOver&&idx>=ev.vagas;
       var isCoordenador=ev.coordenador&&ev.coordenador.toLowerCase().indexOf(c.name.split(' ')[0].toLowerCase())>=0;
-      // Suplente impedida: seu titular está inscrito neste evento
-      var isBloqueada=bloqueada&&c.name===bloqueada&&!isEnr;
+ 
+      // Suplente bloqueada: apenas se o SEU TITULAR específico estiver inscrito no evento
+      var titularPresente=false;
+      var nomeTitular='';
+      if(isSup&&c.titularDe){
+        nomeTitular=c.titularDe;
+        titularPresente=allEnr.some(function(n){
+          return n.toLowerCase().indexOf(c.titularDe.split(' ')[0].toLowerCase())>=0;
+        });
+      }
+      var isBloqueada=isSup&&titularPresente&&!isEnr;
  
       if(isEnr){
         var cls=isExcess?'overflow-enrolled':(isSup?'suplente-tag':'enrolled');
@@ -479,23 +500,23 @@ function renderEvents(){
           +'<span class="dot '+dotc+'"></span>'
           +c.name
           +(isCoordenador?' <em style="font-size:10px;color:#2563a8;font-weight:700">👑 Coordenador</em>':'')
-          +(isSup&&!isCoordenador?' <em style="font-size:10px">(suplente)</em>':'')
+          +(isSup?' <em style="font-size:10px">(suplente de '+nomeTitular.split(' ')[0]+' '+nomeTitular.split(' ')[1]+')</em>':'')
           +(isExcess?' <em style="font-size:10px;font-weight:700">⚠️ excedente</em>':'')
           +(isUEnr?'<button class="remove-btn" onclick="event.stopPropagation();removeUser(\''+ev.id+'\',\''+safe+'\')">×</button>':'')
           +'</div>';
       }
-      // Suplente bloqueada: titular presente, não pode participar
+      // Suplente bloqueada: seu titular está presente — não pode participar (Art. 45)
       if(isBloqueada){
-        return '<div class="conselheiro-tag" style="background:var(--red-bg);border:1px solid var(--red-bd);opacity:.85;cursor:not-allowed;">'
+        return '<div class="conselheiro-tag" style="background:var(--red-bg);border:1px solid var(--red-bd);opacity:.85;cursor:not-allowed;" title="Impedida: seu titular '+nomeTitular+' está inscrito neste evento">'
           +'<span class="dot dot-red"></span>'
           +c.name
-          +' <em style="font-size:10px;color:var(--red);font-weight:700">🚫 impedida — titular presente (Art. 45)</em>'
+          +' <em style="font-size:10px;color:var(--red);font-weight:700">🚫 impedida — '+nomeTitular.split(' ')[0]+' (titular) presente</em>'
           +'</div>';
       }
       if(!isFull){
         return '<div class="conselheiro-tag available" onclick="event.stopPropagation();enrollUser(\''+ev.id+'\',\''+safe+'\')">'
           +'<span class="dot dot-muted"></span>'
-          +c.name+(isSup?' <em style="font-size:10px;color:#d97706">(suplente)</em>':'')
+          +c.name+(isSup?' <em style="font-size:10px;color:#d97706">(suplente de '+nomeTitular.split(' ')[0]+')</em>':'')
           +'</div>';
       }
       return '<div class="conselheiro-tag" style="opacity:.35"><span class="dot dot-muted"></span>'+c.name+(isSup?' <em style="font-size:10px">(suplente)</em>':'')+'</div>';
@@ -503,13 +524,23 @@ function renderEvents(){
  
     var overflowAlert=isOver?'<div class="overflow-alert"><span>⛔</span><span><strong>Excesso de inscritos:</strong> Este evento possui <strong>'+filled+' conselheiros inscritos</strong> para apenas <strong>'+ev.vagas+' vagas aprovadas</strong> no orçamento. Os inscritos marcados como <strong>⚠️ excedente</strong> ultrapassam o limite. É necessário deliberação para ajuste.</span></div>':'';
  
-    // Aviso específico quando suplente está bloqueada por titular presente
-    var bloqWarn=bloqueada&&!isOver?'<div class="suplente-notice" style="background:var(--red-bg);border-color:var(--red-bd);color:var(--red);margin-top:8px;">'
-      +'<span>🚫</span><span><strong>'+bloqueada+'</strong> é suplente de <strong>'+ev.coordenador+'</strong>, que está inscrito neste evento como Coordenador da Câmara. '
-      +'Pelo <strong>Art. 45 do Regimento do CREA-PA</strong>, é vedada a participação do suplente quando o titular está no exercício da função. '
+    // Detecta suplente bloqueada dinamicamente: titular dela está neste evento
+    var supBloqInfo=null;
+    CONSELHEIROS.forEach(function(c){
+      if(c.tipo==='suplente'&&c.titularDe){
+        var titPresente=allEnr.some(function(n){return n.toLowerCase().indexOf(c.titularDe.split(' ')[0].toLowerCase())>=0;});
+        var supPresente=allEnr.some(function(n){return n.toLowerCase().indexOf(c.name.split(' ')[0].toLowerCase())>=0;});
+        if(titPresente&&!supPresente) supBloqInfo={suplente:c.name,titular:c.titularDe};
+      }
+    });
+    var bloqWarn=supBloqInfo&&!isOver?'<div class="suplente-notice" style="background:var(--red-bg);border-color:var(--red-bd);color:var(--red);margin-top:8px;">'
+      +'<span>🚫</span><span><strong>'+supBloqInfo.suplente+'</strong> é suplente de <strong>'+supBloqInfo.titular+'</strong>, que está inscrito neste evento. '
+      +'Pelo <strong>Art. 45, §2º do Regimento do CREA-PA</strong>, é vedada a convocação ou participação do suplente quando o titular está no exercício da função. '
       +'Glayce está <strong>impedida de participar deste evento</strong>.</span>'
       +'</div>':'';
-    var supWarn=hasSup&&!isOver&&!bloqueada?'<div class="suplente-notice"><span>⚠️</span><span>Evento com <strong>Glayce Gabriela Nascimento Dias (Suplente)</strong>. Titular e Suplente <strong>não podem participar do mesmo evento</strong> (Art. 45 do Regimento).</span></div>':'';
+ 
+    // Aviso genérico: suplente E titular no mesmo evento (sem vínculo direto)
+    var supWarn=!bloqWarn&&!isOver&&allEnr.some(function(n){return n.toLowerCase().indexOf('glayce')>=0;})&&allEnr.some(function(n){var c=CONSELHEIROS.find(function(cc){return cc.name===n;});return c&&c.tipo==='titular';})?'<div class="suplente-notice"><span>⚠️</span><span>Evento com <strong>Glayce Gabriela Nascimento Dias (Suplente de Arthemio Scardino Guimaraes Junior)</strong>. Verifique se o seu titular estará presente — se sim, ela estará impedida pelo Art. 45 do Regimento.</span></div>':'';
  
     var crows='';
     if(dias)crows+='<tr><td>Diárias ('+dias+' × R$'+vd+')</td><td>R$'+(dias*vd).toLocaleString('pt-BR')+'</td></tr>';
@@ -616,16 +647,32 @@ function enrollUser(eid,name){
   var allEnr=ev.enrolled.concat(uEnr);
   var c=CONSELHEIROS.find(function(c){return c.name===name;});
   var isSup=c&&c.tipo==='suplente';
-  var supPres=allEnr.some(function(n){return n.toLowerCase().indexOf('glayce')>=0;});
  
-  if(isSup&&allEnr.length>0){
-    showModal('⚠️ Conflito – Art. 45 do Regimento','Já há conselheiro(a) titular inscrito(a). Titular e Suplente NÃO podem participar do mesmo evento. Deseja prosseguir mesmo assim?').then(function(ok){if(ok)doEnroll(eid,name);});
-    return;
+  // Verifica conflito real: suplente tenta entrar onde SEU titular está, ou vice-versa
+  if(isSup&&c.titularDe){
+    var titPresente=allEnr.some(function(n){return n.toLowerCase().indexOf(c.titularDe.split(' ')[0].toLowerCase())>=0;});
+    if(titPresente){
+      showModal('🚫 Impedimento – Art. 45 do Regimento',
+        c.name+' é suplente de '+c.titularDe+', que já está inscrito(a) neste evento. Pelo Art. 45 do Regimento do CREA-PA, é vedada a participação do suplente quando o titular está no exercício da função.',
+        true);
+      // Não oferece opção de prosseguir — é impedimento regimental
+      return;
+    }
   }
-  if(!isSup&&supPres){
-    showModal('⚠️ Conflito – Art. 45 do Regimento','A suplente Glayce Gabriela Nascimento Dias já está inscrita. Titular e Suplente NÃO podem participar do mesmo evento. Deseja prosseguir mesmo assim?').then(function(ok){if(ok)doEnroll(eid,name);});
-    return;
+  if(!isSup){
+    // Titular tenta entrar onde a suplente dele(a) já está
+    var sup=CONSELHEIROS.find(function(s){return s.titularDe===name;});
+    if(sup){
+      var supPresente=allEnr.some(function(n){return n.toLowerCase().indexOf(sup.name.split(' ')[0].toLowerCase())>=0;});
+      if(supPresente){
+        showModal('⚠️ Conflito – Art. 45 do Regimento',
+          sup.name+' (suplente) já está inscrita neste evento. Pelo Art. 45, titular e suplente não podem participar do mesmo evento. Deseja prosseguir mesmo assim?')
+        .then(function(ok){if(ok)doEnroll(eid,name);});
+        return;
+      }
+    }
   }
+ 
   if(allEnr.length>=ev.vagas){
     showModal('⚠️ Vagas esgotadas','Este evento já atingiu o número de vagas aprovadas no orçamento ('+ev.vagas+'). Inscrever mais participantes configura excesso. Deseja prosseguir mesmo assim?').then(function(ok){if(ok)doEnroll(eid,name);});
     return;
