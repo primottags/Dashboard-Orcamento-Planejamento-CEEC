@@ -10,362 +10,194 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    /* Paleta principal — azul-petróleo suave + tons terrosos quentes */
-    --bg:       #f0f4f8;
-    --bg2:      #e8eef5;
-    --surface:  #ffffff;
-    --surface2: #f7fafd;
-    --border:   #d6e2ee;
-    --border2:  #e2eaf3;
- 
-    --navy:     #1e3a5f;   /* texto principal */
-    --blue:     #2563a8;   /* accent primário */
-    --accent:   #3b82c4;
-    --text:     #1e3a5f;
-    --muted:    #6b8caf;
-    --subtle:   #a0b8d0;
- 
-    /* Status */
-    --green:    #16a34a;
-    --green-bg: #f0fdf4;
-    --green-bd: #bbf7d0;
- 
-    --amber:    #d97706;
-    --amber-bg: #fffbeb;
-    --amber-bd: #fde68a;
- 
-    --teal:     #0891b2;
-    --teal-bg:  #ecfeff;
-    --teal-bd:  #a5f3fc;
- 
-    --purple:   #7c3aed;
-    --purple-bg:#f5f3ff;
-    --purple-bd:#ddd6fe;
- 
-    --red:      #dc2626;
-    --red-bg:   #fef2f2;
- 
-    --gold:     #b45309;
-    --gold-bg:  #fffbeb;
+    --bg:#f0f4f8; --bg2:#e8eef5; --surface:#fff; --surface2:#f7fafd;
+    --border:#d6e2ee; --border2:#e2eaf3;
+    --navy:#1e3a5f; --blue:#2563a8; --accent:#3b82c4;
+    --text:#1e3a5f; --muted:#6b8caf; --subtle:#a0b8d0;
+    --green:#16a34a; --green-bg:#f0fdf4; --green-bd:#bbf7d0;
+    --amber:#d97706; --amber-bg:#fffbeb; --amber-bd:#fde68a;
+    --teal:#0891b2; --teal-bg:#ecfeff; --teal-bd:#a5f3fc;
+    --purple:#7c3aed; --purple-bg:#f5f3ff; --purple-bd:#ddd6fe;
+    --red:#dc2626; --red-bg:#fef2f2; --red-bd:#fecaca;
+    --gold:#b45309; --gold-bg:#fffbeb;
+    --orange:#c2410c; --orange-bg:#fff7ed; --orange-bd:#fed7aa;
   }
- 
   *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
   html{-webkit-text-size-adjust:100%;}
-  body{background:var(--bg);color:var(--text);font-family:'Lato',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;}
+  body{background:var(--bg);color:var(--text);font-family:'Lato',-apple-system,BlinkMacSystemFont,sans-serif;min-height:100vh;}
  
-  /* HEADER */
-  header{
-    background:var(--navy);
-    border-bottom:1px solid rgba(0,0,0,0.12);
-    padding:16px 20px;
-    padding-top:calc(16px + env(safe-area-inset-top,0px));
-    display:-webkit-flex;display:flex;
-    -webkit-align-items:center;align-items:center;
-    gap:14px;
-    position:-webkit-sticky;position:sticky;
-    top:0;z-index:100;
-    box-shadow:0 2px 8px rgba(30,58,95,0.15);
-  }
-  .logo-box{
-    width:40px;height:40px;flex-shrink:0;
-    background:linear-gradient(135deg,#4fa3e0,#2563a8);
-    border-radius:10px;
-    display:-webkit-flex;display:flex;
-    -webkit-align-items:center;align-items:center;
-    -webkit-justify-content:center;justify-content:center;
-    font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:14px;color:#fff;
-    box-shadow:0 2px 8px rgba(0,0,0,0.2);
-  }
+  header{background:var(--navy);border-bottom:1px solid rgba(0,0,0,.12);padding:16px 20px;padding-top:calc(16px + env(safe-area-inset-top,0px));display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(30,58,95,.15);}
+  .logo-box{width:40px;height:40px;flex-shrink:0;background:linear-gradient(135deg,#4fa3e0,#2563a8);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:14px;color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.2);}
   .header-text{flex:1;min-width:0;}
-  .header-text h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;line-height:1.3;color:#fff;}
-  .header-text p{font-size:11px;color:rgba(255,255,255,0.6);margin-top:2px;}
-  .badge-year{
-    padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;
-    background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);
-    color:#fff;white-space:nowrap;flex-shrink:0;
-    font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:0.04em;
-  }
+  .header-text h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;color:#fff;line-height:1.3;}
+  .header-text p{font-size:11px;color:rgba(255,255,255,.6);margin-top:2px;}
+  .badge-year{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;white-space:nowrap;flex-shrink:0;font-family:'Plus Jakarta Sans',sans-serif;}
  
-  /* ALERT */
-  .alert-banner{
-    background:var(--amber-bg);border-left:4px solid var(--amber);
-    margin:14px 14px 0;padding:12px 14px;
-    border-radius:0 10px 10px 0;
-    font-size:13px;color:#92400e;line-height:1.6;
-    display:-webkit-flex;display:flex;-webkit-align-items:flex-start;align-items:flex-start;gap:8px;
-    box-shadow:0 1px 4px rgba(0,0,0,0.06);
-  }
+  .alert-banner{background:var(--amber-bg);border-left:4px solid var(--amber);margin:14px 14px 0;padding:12px 14px;border-radius:0 10px 10px 0;font-size:13px;color:#92400e;line-height:1.6;display:flex;align-items:flex-start;gap:8px;box-shadow:0 1px 4px rgba(0,0,0,.06);}
   .alert-banner .icon{font-size:15px;flex-shrink:0;margin-top:2px;}
-  .alert-banner strong{color:#78350f;}
  
-  /* MAIN */
   main{padding:16px 14px;padding-bottom:calc(40px + env(safe-area-inset-bottom,0px));max-width:1400px;margin:0 auto;}
  
-  /* SUMMARY CARDS */
-  .summary-grid{display:-webkit-flex;display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;}
-  .sum-card{
-    background:var(--surface);border:1px solid var(--border);
-    border-radius:14px;padding:14px 16px;
-    position:relative;overflow:hidden;flex:1 1 120px;
-    box-shadow:0 1px 4px rgba(30,58,95,0.07);
-  }
+  /* SUMMARY */
+  .summary-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;}
+  .sum-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:13px 16px;position:relative;overflow:hidden;flex:1 1 120px;box-shadow:0 1px 4px rgba(30,58,95,.07);}
   .sum-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:14px 14px 0 0;}
-  .sum-card.total::before{background:var(--accent);}
-  .sum-card.consolidated::before{background:var(--green);}
-  .sum-card.pending::before{background:var(--amber);}
-  .sum-card.budget::before{background:var(--gold);}
-  .sum-card.conselheiros::before{background:var(--teal);}
-  .sum-card.analise::before{background:var(--purple);}
-  .sum-card label{font-size:10px;text-transform:uppercase;letter-spacing:0.09em;color:var(--muted);display:block;margin-bottom:6px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;}
+  .sum-card.s-total::before{background:var(--accent);}
+  .sum-card.s-ok::before{background:var(--green);}
+  .sum-card.s-pend::before{background:var(--amber);}
+  .sum-card.s-over::before{background:var(--red);}
+  .sum-card.s-budget::before{background:var(--gold);}
+  .sum-card.s-analise::before{background:var(--purple);}
+  .sum-card label{font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);display:block;margin-bottom:5px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;}
   .sum-card .value{font-family:'Plus Jakarta Sans',sans-serif;font-size:24px;font-weight:800;line-height:1;}
-  .sum-card.total .value{color:var(--blue);}
-  .sum-card.consolidated .value{color:var(--green);}
-  .sum-card.pending .value{color:var(--amber);}
-  .sum-card.budget .value{color:var(--gold);}
-  .sum-card.conselheiros .value{color:var(--teal);}
-  .sum-card.analise .value{color:var(--purple);}
-  .sum-card small{font-size:10px;color:var(--subtle);margin-top:4px;display:block;}
+  .sum-card.s-total .value{color:var(--blue);}
+  .sum-card.s-ok .value{color:var(--green);}
+  .sum-card.s-pend .value{color:var(--amber);}
+  .sum-card.s-over .value{color:var(--red);}
+  .sum-card.s-budget .value{color:var(--gold);}
+  .sum-card.s-analise .value{color:var(--purple);}
+  .sum-card small{font-size:10px;color:var(--subtle);margin-top:3px;display:block;}
  
-  /* SECTION HEADER */
-  .section-header{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;gap:10px;margin:22px 0 10px;}
-  .section-header h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);white-space:nowrap;}
+  /* SECTIONS */
+  .section-header{display:flex;align-items:center;gap:10px;margin:22px 0 10px;}
+  .section-header h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);white-space:nowrap;}
   .section-line{flex:1;height:1px;background:var(--border);}
  
   /* FILTERS */
-  .filter-bar{display:-webkit-flex;display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px;}
-  .filter-btn{
-    padding:7px 14px;border-radius:20px;font-size:12px;font-weight:600;
-    border:1px solid var(--border);background:var(--surface);color:var(--muted);
-    cursor:pointer;-webkit-appearance:none;appearance:none;
-    font-family:'Plus Jakarta Sans',-apple-system,sans-serif;
-    min-height:36px;touch-action:manipulation;
-    box-shadow:0 1px 3px rgba(30,58,95,0.06);
-    -webkit-transition:all 0.15s;transition:all 0.15s;
-  }
-  .filter-btn.active{background:var(--navy);border-color:var(--navy);color:#fff;box-shadow:0 2px 6px rgba(30,58,95,0.2);}
+  .filter-bar{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px;}
+  .filter-btn{padding:7px 14px;border-radius:20px;font-size:12px;font-weight:600;border:1px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;-webkit-appearance:none;font-family:'Plus Jakarta Sans',sans-serif;min-height:36px;touch-action:manipulation;box-shadow:0 1px 3px rgba(30,58,95,.06);}
+  .filter-btn.active{background:var(--navy);border-color:var(--navy);color:#fff;}
  
-  /* EVENTS LIST */
-  .events-list{display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;gap:8px;}
- 
-  .event-card{
-    background:var(--surface);border:1px solid var(--border);
-    border-radius:14px;overflow:hidden;
-    box-shadow:0 1px 4px rgba(30,58,95,0.07);
-    -webkit-transition:box-shadow 0.2s;transition:box-shadow 0.2s;
-  }
+  /* EVENTS */
+  .events-list{display:flex;flex-direction:column;gap:8px;}
+  .event-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:0 1px 4px rgba(30,58,95,.07);}
   .event-card.consolidated{border-left:4px solid var(--green);}
   .event-card.pending{border-left:4px solid var(--amber);}
   .event-card.internal{border-left:4px solid var(--teal);}
+  .event-card.overflow{border-left:4px solid var(--red);}
  
-  .event-header{
-    display:-webkit-flex;display:flex;
-    -webkit-justify-content:space-between;justify-content:space-between;
-    -webkit-align-items:flex-start;align-items:flex-start;
-    gap:10px;padding:14px 16px;
-    cursor:pointer;touch-action:manipulation;
-    -webkit-user-select:none;user-select:none;min-height:52px;
-    background:var(--surface);
-  }
-  .event-main-info{display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;gap:5px;flex:1;min-width:0;}
+  .event-header{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:13px 16px;cursor:pointer;touch-action:manipulation;user-select:none;min-height:52px;}
+  .event-main-info{display:flex;flex-direction:column;gap:5px;flex:1;min-width:0;}
   .event-name{font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;line-height:1.35;color:var(--navy);}
-  .event-meta{display:-webkit-flex;display:flex;flex-wrap:wrap;gap:5px;}
-  .meta-pill{
-    font-size:10px;padding:2px 8px;
-    background:var(--bg2);border:1px solid var(--border2);
-    border-radius:10px;color:var(--muted);white-space:nowrap;
-    font-family:'Plus Jakarta Sans',sans-serif;font-weight:500;
-  }
-  .event-right{display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;-webkit-align-items:flex-end;align-items:flex-end;gap:5px;flex-shrink:0;}
-  .event-status{font-size:10px;font-weight:700;padding:3px 9px;border-radius:10px;text-transform:uppercase;letter-spacing:0.05em;white-space:nowrap;font-family:'Plus Jakarta Sans',sans-serif;}
+  .event-meta{display:flex;flex-wrap:wrap;gap:5px;}
+  .meta-pill{font-size:10px;padding:2px 8px;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;color:var(--muted);white-space:nowrap;font-family:'Plus Jakarta Sans',sans-serif;font-weight:500;}
+  .meta-pill.overflow-pill{background:var(--red-bg);border-color:var(--red-bd);color:var(--red);font-weight:700;}
+  .event-right{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0;}
+  .event-status{font-size:10px;font-weight:700;padding:3px 9px;border-radius:10px;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;font-family:'Plus Jakarta Sans',sans-serif;}
   .status-consolidated{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd);}
   .status-pending{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-bd);}
   .status-internal{background:var(--teal-bg);color:var(--teal);border:1px solid var(--teal-bd);}
+  .status-overflow{background:var(--red-bg);color:var(--red);border:1px solid var(--red-bd);}
   .event-valor{font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;color:var(--gold);}
-  .chevron{color:var(--subtle);font-size:12px;display:inline-block;-webkit-transition:-webkit-transform 0.25s;transition:transform 0.25s;}
-  .event-card.open .chevron{-webkit-transform:rotate(180deg);transform:rotate(180deg);}
+  .chevron{color:var(--subtle);font-size:12px;display:inline-block;transition:transform .25s;}
+  .event-card.open .chevron{transform:rotate(180deg);}
  
   .event-detail{display:none;padding:0 16px 16px;border-top:1px solid var(--border2);background:var(--surface2);}
   .event-card.open .event-detail{display:block;}
-  .detail-grid{display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;gap:14px;margin-top:12px;}
-  .detail-section h4{
-    font-size:10px;text-transform:uppercase;letter-spacing:0.1em;
-    color:var(--muted);font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;
-    margin-bottom:9px;padding-bottom:6px;border-bottom:1px solid var(--border);
-  }
+  .detail-grid{display:flex;flex-direction:column;gap:14px;margin-top:12px;}
+  .detail-section h4{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;margin-bottom:9px;padding-bottom:6px;border-bottom:1px solid var(--border);}
+ 
+  /* OVERFLOW ALERT */
+  .overflow-alert{background:var(--red-bg);border:1px solid var(--red-bd);border-radius:10px;padding:11px 14px;margin-top:10px;font-size:12px;color:var(--red);line-height:1.6;display:flex;gap:8px;align-items:flex-start;}
+  .overflow-alert strong{color:var(--red);}
  
   /* CONSELHEIROS */
-  .conselheiros-grid{display:-webkit-flex;display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;}
-  .conselheiro-tag{
-    display:-webkit-inline-flex;display:inline-flex;
-    -webkit-align-items:center;align-items:center;
-    gap:5px;padding:6px 11px;border-radius:8px;font-size:12px;
-    border:1px solid transparent;line-height:1.2;
-    font-family:'Lato',sans-serif;
-  }
+  .conselheiros-grid{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;}
+  .conselheiro-tag{display:inline-flex;align-items:center;gap:5px;padding:6px 11px;border-radius:8px;font-size:12px;border:1px solid transparent;line-height:1.2;font-family:'Lato',sans-serif;}
   .conselheiro-tag.enrolled{background:var(--green-bg);border-color:var(--green-bd);color:#14532d;}
   .conselheiro-tag.suplente-tag{background:var(--amber-bg);border-color:var(--amber-bd);color:#92400e;}
-  .conselheiro-tag.available{
-    background:var(--bg2);border-color:var(--border);color:var(--muted);
-    cursor:pointer;touch-action:manipulation;min-height:34px;
-    -webkit-transition:all 0.15s;transition:all 0.15s;
-  }
-  .conselheiro-tag.available:active{background:var(--teal-bg);border-color:var(--teal-bd);color:var(--teal);}
+  .conselheiro-tag.overflow-enrolled{background:var(--red-bg);border-color:var(--red-bd);color:var(--red);}
+  .conselheiro-tag.available{background:var(--bg2);border-color:var(--border);color:var(--muted);cursor:pointer;touch-action:manipulation;min-height:34px;}
   .conselheiro-tag .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
-  .dot-green{background:var(--green);}.dot-amber{background:var(--amber);}.dot-muted{background:var(--subtle);}
+  .dot-green{background:var(--green);}.dot-amber{background:var(--amber);}.dot-muted{background:var(--subtle);}.dot-red{background:var(--red);}
+  .remove-btn{background:var(--red-bg);border:1px solid var(--red-bd);color:var(--red);border-radius:4px;cursor:pointer;padding:2px 7px;font-size:11px;margin-left:3px;-webkit-appearance:none;touch-action:manipulation;min-width:24px;min-height:24px;display:inline-flex;align-items:center;justify-content:center;}
+  .suplente-notice{background:var(--amber-bg);border:1px solid var(--amber-bd);border-radius:8px;padding:10px 12px;font-size:12px;color:#92400e;margin-top:8px;line-height:1.6;display:flex;gap:8px;align-items:flex-start;}
  
-  .remove-btn{
-    background:var(--red-bg);border:1px solid #fecaca;color:var(--red);
-    border-radius:4px;cursor:pointer;padding:2px 7px;font-size:11px;
-    margin-left:3px;-webkit-appearance:none;appearance:none;
-    font-family:-apple-system,sans-serif;touch-action:manipulation;
-    min-width:24px;min-height:24px;
-    display:-webkit-inline-flex;display:inline-flex;
-    -webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;
-  }
- 
-  .suplente-notice{
-    background:var(--amber-bg);border:1px solid var(--amber-bd);
-    border-radius:8px;padding:10px 12px;font-size:12px;color:#92400e;
-    margin-top:8px;line-height:1.6;
-    display:-webkit-flex;display:flex;gap:8px;-webkit-align-items:flex-start;align-items:flex-start;
-  }
+  /* EDIT MODE (consolidated) */
+  .edit-toggle-btn{padding:6px 12px;border-radius:8px;font-size:11px;font-weight:600;border:1px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;touch-action:manipulation;margin-top:8px;}
+  .edit-toggle-btn.active{background:var(--navy);border-color:var(--navy);color:#fff;}
+  .edit-panel{display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);}
+  .edit-panel.open{display:block;}
+  .edit-panel-title{font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:var(--blue);font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:6px;}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .form-grid.full{grid-template-columns:1fr;}
+  .form-group{display:flex;flex-direction:column;gap:4px;}
+  .form-group label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;}
+  .form-input{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:9px 11px;font-size:13px;color:var(--text);font-family:'Lato',sans-serif;-webkit-appearance:none;width:100%;min-height:40px;}
+  .form-input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(59,130,196,.1);}
+  .form-save-btn{margin-top:10px;padding:10px 16px;border-radius:10px;font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;touch-action:manipulation;min-height:42px;background:var(--navy);color:#fff;}
  
   .cost-table{width:100%;border-collapse:collapse;font-size:12px;}
-  .cost-table td{padding:7px 8px;border-bottom:1px solid var(--border2);line-height:1.4;color:var(--text);}
+  .cost-table td{padding:6px 8px;border-bottom:1px solid var(--border2);line-height:1.4;}
   .cost-table td:last-child{text-align:right;color:var(--gold);font-weight:600;}
   .cost-table tr:last-child td{border-bottom:none;font-weight:700;}
-  .cost-table tr:last-child td:last-child{color:var(--gold);}
   .cost-table tr:last-child{background:var(--gold-bg);}
  
+  .coord-badge{display:inline-flex;align-items:center;gap:4px;background:#eff6ff;border:1px solid #bfdbfe;color:#1d4ed8;border-radius:8px;padding:3px 9px;font-size:11px;font-weight:600;font-family:'Plus Jakarta Sans',sans-serif;}
   .vagas-bar-wrap{margin-top:10px;}
-  .vagas-label{display:-webkit-flex;display:flex;-webkit-justify-content:space-between;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:5px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:500;}
+  .vagas-label{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:5px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:500;}
   .vagas-bar{height:7px;background:var(--border);border-radius:10px;overflow:hidden;}
-  .vagas-fill{height:100%;border-radius:10px;-webkit-transition:width 0.5s;transition:width 0.5s;}
-  .fill-full{background:var(--green);}.fill-partial{background:var(--amber);}.fill-empty{background:var(--subtle);}
+  .vagas-fill{height:100%;border-radius:10px;transition:width .5s;}
+  .fill-full{background:var(--green);}.fill-partial{background:var(--amber);}.fill-empty{background:var(--subtle);}.fill-over{background:var(--red);}
  
   /* TOAST */
-  .toast{
-    position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));
-    left:14px;right:14px;
-    background:var(--navy);border-left:4px solid var(--green);
-    border-radius:14px;padding:13px 16px;font-size:13px;color:#fff;
-    z-index:1000;box-shadow:0 8px 24px rgba(30,58,95,0.25);
-    -webkit-transform:translateY(120px);transform:translateY(120px);opacity:0;
-    -webkit-transition:all 0.35s cubic-bezier(.16,1,.3,1);transition:all 0.35s cubic-bezier(.16,1,.3,1);
-    pointer-events:none;
-  }
-  .toast.show{-webkit-transform:translateY(0);transform:translateY(0);opacity:1;}
+  .toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:14px;right:14px;background:var(--navy);border-left:4px solid var(--green);border-radius:12px;padding:13px 16px;font-size:13px;color:#fff;z-index:1000;box-shadow:0 8px 24px rgba(30,58,95,.25);transform:translateY(120px);opacity:0;transition:all .35s cubic-bezier(.16,1,.3,1);pointer-events:none;}
+  .toast.show{transform:translateY(0);opacity:1;}
   .toast strong{color:#86efac;display:block;margin-bottom:3px;}
  
   /* LEGEND */
-  .legend{display:-webkit-flex;display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px;font-size:12px;color:var(--muted);font-family:'Plus Jakarta Sans',sans-serif;font-weight:500;}
-  .legend-item{display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;gap:5px;}
+  .legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px;font-size:12px;color:var(--muted);font-family:'Plus Jakarta Sans',sans-serif;font-weight:500;}
+  .legend-item{display:flex;align-items:center;gap:5px;}
   .legend-dot{width:9px;height:9px;border-radius:3px;}
  
-  /* EXTRA EVENTS */
-  .extra-section{
-    background:var(--purple-bg);border:1px solid var(--purple-bd);
-    border-radius:14px;padding:14px;margin-top:6px;
-  }
-  .extra-section h3{
-    font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;
-    color:var(--purple);margin-bottom:12px;text-transform:uppercase;letter-spacing:0.1em;
-  }
+  /* NON-APPROVED EVENTS */
+  .extra-section{background:var(--purple-bg);border:1px solid var(--purple-bd);border-radius:14px;padding:14px;margin-top:6px;}
+  .extra-section-header{margin-bottom:14px;}
+  .extra-section-header h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;}
  
-  .extra-card{
-    background:var(--surface);border:1px solid var(--purple-bd);
-    border-left:4px solid var(--purple);border-radius:10px;
-    margin-bottom:8px;overflow:hidden;
-    box-shadow:0 1px 3px rgba(0,0,0,0.06);
-  }
+  /* REGULATORY NOTICE */
+  .regulatory-notice{background:#fff;border:1px solid var(--purple-bd);border-left:4px solid var(--purple);border-radius:10px;padding:14px 16px;margin-bottom:14px;}
+  .reg-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;color:var(--purple);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+  .reg-body{font-size:12px;color:var(--text);line-height:1.7;}
+  .reg-body strong{color:var(--navy);}
+  .reg-steps{margin:8px 0 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px;}
+  .reg-steps li{display:flex;align-items:flex-start;gap:8px;font-size:12px;}
+  .step-num{width:20px;height:20px;border-radius:50%;background:var(--purple);color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+  .timeline-badge{display:inline-flex;align-items:center;gap:5px;background:var(--orange-bg);border:1px solid var(--orange-bd);color:var(--orange);border-radius:8px;padding:5px 10px;font-size:12px;font-weight:600;font-family:'Plus Jakarta Sans',sans-serif;margin-top:10px;}
+ 
+  /* EXTRA CARD */
+  .extra-card{background:var(--surface);border:1px solid var(--purple-bd);border-left:4px solid var(--purple);border-radius:10px;margin-bottom:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06);}
   .extra-card:last-child{margin-bottom:0;}
- 
-  .extra-header{
-    display:-webkit-flex;display:flex;
-    -webkit-justify-content:space-between;justify-content:space-between;
-    -webkit-align-items:flex-start;align-items:flex-start;
-    padding:12px 14px;cursor:pointer;touch-action:manipulation;
-    -webkit-user-select:none;user-select:none;gap:10px;
-    background:var(--surface);
-  }
+  .extra-header{display:flex;justify-content:space-between;align-items:flex-start;padding:12px 14px;cursor:pointer;touch-action:manipulation;user-select:none;gap:10px;}
   .extra-header-left{flex:1;min-width:0;}
   .extra-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;line-height:1.3;color:var(--navy);}
-  .extra-meta{display:-webkit-flex;display:flex;flex-wrap:wrap;gap:5px;margin-top:4px;}
-  .extra-chevron{color:var(--subtle);font-size:12px;display:inline-block;-webkit-transition:-webkit-transform 0.25s;transition:transform 0.25s;flex-shrink:0;margin-top:3px;}
-  .extra-card.open .extra-chevron{-webkit-transform:rotate(180deg);transform:rotate(180deg);}
- 
+  .extra-meta{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px;}
+  .extra-chevron{color:var(--subtle);font-size:12px;display:inline-block;transition:transform .25s;flex-shrink:0;margin-top:3px;}
+  .extra-card.open .extra-chevron{transform:rotate(180deg);}
   .extra-body{display:none;padding:0 14px 14px;border-top:1px solid var(--purple-bd);background:var(--surface2);}
   .extra-card.open .extra-body{display:block;}
- 
-  .extra-names-row{
-    font-size:12px;color:#5b21b6;margin-top:10px;
-    padding:9px 11px;background:var(--purple-bg);
-    border:1px solid var(--purple-bd);border-radius:8px;line-height:1.6;
-  }
+  .extra-names-row{font-size:12px;color:#5b21b6;margin-top:10px;padding:9px 11px;background:var(--purple-bg);border:1px solid var(--purple-bd);border-radius:8px;line-height:1.6;}
   .extra-names-row strong{color:var(--purple);font-weight:700;}
+  .extra-reg-mini{background:var(--orange-bg);border:1px solid var(--orange-bd);border-radius:8px;padding:9px 12px;margin-top:10px;font-size:12px;color:var(--orange);line-height:1.6;display:flex;gap:7px;align-items:flex-start;}
  
-  /* FORM */
+  /* EDIT FORM FOR EXTRA */
   .edit-form{margin-top:12px;}
-  .edit-form-title{
-    font-size:10px;text-transform:uppercase;letter-spacing:0.1em;
-    color:var(--purple);font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;
-    margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--purple-bd);
-    display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;gap:6px;
-  }
-  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-  .form-grid.full{grid-template-columns:1fr;}
-  .form-group{display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;gap:4px;}
-  .form-group label{
-    font-size:10px;color:var(--muted);text-transform:uppercase;
-    letter-spacing:0.07em;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;
-  }
-  .form-input{
-    background:var(--surface);border:1px solid var(--border);
-    border-radius:8px;padding:9px 11px;font-size:13px;color:var(--text);
-    font-family:'Lato',-apple-system,sans-serif;
-    -webkit-appearance:none;appearance:none;width:100%;min-height:40px;
-    -webkit-transition:border-color 0.15s;transition:border-color 0.15s;
-  }
-  .form-input:focus{outline:none;border-color:var(--purple);box-shadow:0 0 0 3px rgba(124,58,237,0.1);}
-  .form-input::placeholder{color:var(--subtle);}
- 
-  .form-actions{display:-webkit-flex;display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
-  .btn-promote{
-    flex:1;padding:11px 14px;border-radius:10px;font-size:13px;font-weight:700;
-    border:none;cursor:pointer;font-family:'Plus Jakarta Sans',-apple-system,sans-serif;
-    touch-action:manipulation;min-height:44px;-webkit-appearance:none;appearance:none;
-    background:var(--navy);color:#fff;
-    display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;
-    -webkit-justify-content:center;justify-content:center;gap:6px;
-    box-shadow:0 2px 8px rgba(30,58,95,0.25);
-  }
-  .btn-save{
-    flex:1;padding:11px 14px;border-radius:10px;font-size:13px;font-weight:700;
-    border:2px solid var(--purple-bd);cursor:pointer;
-    font-family:'Plus Jakarta Sans',-apple-system,sans-serif;
-    touch-action:manipulation;min-height:44px;-webkit-appearance:none;appearance:none;
-    background:var(--purple-bg);color:var(--purple);
-  }
- 
-  .valor-preview{
-    margin-top:10px;padding:11px 14px;
-    background:var(--gold-bg);border:1px solid #fde68a;
-    border-radius:10px;
-    display:-webkit-flex;display:flex;
-    -webkit-justify-content:space-between;justify-content:space-between;
-    -webkit-align-items:center;align-items:center;
-  }
+  .edit-form-title{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--purple);font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--purple-bd);display:flex;align-items:center;gap:6px;}
+  .valor-preview{margin-top:10px;padding:11px 14px;background:var(--gold-bg);border:1px solid #fde68a;border-radius:10px;display:flex;justify-content:space-between;align-items:center;}
   .valor-preview span{font-size:12px;color:var(--gold);font-family:'Plus Jakarta Sans',sans-serif;font-weight:500;}
   .valor-preview strong{font-family:'Plus Jakarta Sans',sans-serif;font-size:17px;font-weight:800;color:var(--gold);}
+  .form-actions{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
+  .btn-promote{flex:1;padding:11px 14px;border-radius:10px;font-size:13px;font-weight:700;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;touch-action:manipulation;min-height:44px;-webkit-appearance:none;background:var(--navy);color:#fff;}
+  .btn-save{flex:1;padding:11px 14px;border-radius:10px;font-size:13px;font-weight:700;border:2px solid var(--purple-bd);cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;touch-action:manipulation;min-height:44px;-webkit-appearance:none;background:var(--purple-bg);color:var(--purple);}
  
   /* MODAL */
-  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(30,58,95,0.45);z-index:500;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;padding:20px;}
-  .modal-overlay.show{display:-webkit-flex;display:flex;}
-  .modal-box{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:24px 22px;max-width:340px;width:100%;box-shadow:0 16px 40px rgba(30,58,95,0.18);}
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(30,58,95,.45);z-index:500;align-items:center;justify-content:center;padding:20px;}
+  .modal-overlay.show{display:flex;}
+  .modal-box{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:22px 20px;max-width:360px;width:100%;box-shadow:0 16px 40px rgba(30,58,95,.18);}
   .modal-box h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;font-weight:800;color:var(--amber);margin-bottom:10px;}
   .modal-box p{font-size:14px;line-height:1.65;color:var(--text);}
-  .modal-actions{display:-webkit-flex;display:flex;gap:10px;margin-top:20px;}
-  .modal-btn{flex:1;padding:13px;border-radius:12px;font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',-apple-system,sans-serif;touch-action:manipulation;min-height:46px;-webkit-appearance:none;appearance:none;}
+  .modal-actions{display:flex;gap:10px;margin-top:20px;}
+  .modal-btn{flex:1;padding:13px;border-radius:12px;font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;touch-action:manipulation;min-height:46px;-webkit-appearance:none;}
   .modal-btn.cancel{background:var(--bg2);color:var(--muted);border:1px solid var(--border);}
   .modal-btn.confirm{background:var(--amber);color:#fff;}
  
@@ -373,10 +205,11 @@
     main{padding:22px 28px calc(48px + env(safe-area-inset-bottom,0px));}
     header{padding:16px 28px;padding-top:calc(16px + env(safe-area-inset-top,0px));}
     .alert-banner{margin:16px 28px 0;}
-    .detail-grid{-webkit-flex-direction:row;flex-direction:row;}
+    .detail-grid{flex-direction:row;}
     .detail-grid .detail-section{flex:1;}
     .toast{left:auto;right:24px;max-width:360px;}
     .form-grid{grid-template-columns:1fr 1fr 1fr;}
+    .summary-grid{flex-wrap:nowrap;}
   }
 </style>
 </head>
@@ -386,14 +219,14 @@
   <div class="logo-box">CE</div>
   <div class="header-text">
     <h1>Câmara Especializada de Engenharia Civil e Agrimensura</h1>
-    <p>CREA-PA · Dashboard de Eventos 2026</p>
+    <p>CREA-PA · Dashboard de Eventos e Orçamento 2026</p>
   </div>
   <span class="badge-year">2026</span>
 </header>
  
 <div class="alert-banner">
   <span class="icon">⚠️</span>
-  <span><strong>Regra:</strong> Titular e Suplente <strong>não podem participar do mesmo evento</strong>. <strong>Glayce Gabriela Nascimento Dias</strong> é <em>suplente</em>.</span>
+  <span><strong>Regra:</strong> Titular e Suplente <strong>não podem participar do mesmo evento</strong> (Art. 45 do Regimento). <strong>Glayce Gabriela Nascimento Dias</strong> é <em>suplente</em>. Eventos em <span style="color:var(--red);font-weight:700">vermelho</span> possuem mais conselheiros inscritos do que vagas aprovadas.</span>
 </div>
  
 <main>
@@ -403,44 +236,57 @@
     <div class="legend-item"><div class="legend-dot" style="background:#16a34a"></div>Consolidado</div>
     <div class="legend-item"><div class="legend-dot" style="background:#d97706"></div>Aguardando</div>
     <div class="legend-item"><div class="legend-dot" style="background:#0891b2"></div>Interno</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#7c3aed"></div>Em Análise</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#a0b8d0"></div>Suplente</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#dc2626"></div>Excesso de inscritos</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#7c3aed"></div>Não aprovado</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#a0b8d0;opacity:.7"></div>Suplente</div>
   </div>
  
   <div class="section-header">
-    <h2>Eventos com Orçamento</h2>
+    <h2>Eventos Aprovados no Planejamento 2026</h2>
     <div class="section-line"></div>
   </div>
   <div class="filter-bar">
     <button class="filter-btn active" onclick="filterEvents('all',this)">Todos</button>
+    <button class="filter-btn" onclick="filterEvents('overflow',this)">⛔ Excesso</button>
     <button class="filter-btn" onclick="filterEvents('consolidated',this)">✅ Consolidados</button>
     <button class="filter-btn" onclick="filterEvents('pending',this)">⏳ Aguardando</button>
     <button class="filter-btn" onclick="filterEvents('internal',this)">🏛️ Internos</button>
   </div>
   <div class="events-list" id="events-list"></div>
  
-  <div class="section-header" style="margin-top:28px;">
-    <h2>Demandas em Análise</h2>
+  <div class="section-header" style="margin-top:32px;">
+    <h2>Eventos Não Aprovados no Planejamento</h2>
     <div class="section-line"></div>
   </div>
   <div class="extra-section">
-    <h3>🔎 Aguardando aprovação orçamentária — preencha os dados quando aprovado</h3>
+    <div class="extra-section-header">
+      <h3>⚠️ Fora do Plano de Trabalho Aprovado</h3>
+      <div class="regulatory-notice">
+        <div class="reg-title">📋 Exigência Regimental – Art. 60, III e Art. 210 do Regimento CREA-PA</div>
+        <div class="reg-body">
+          A inclusão de novos eventos no Plano de Trabalho da Câmara Especializada <strong>não aprovados no planejamento original</strong> requer a abertura de novo ciclo deliberativo, conforme o Regimento do CREA-PA (aprovado em 26/01/2023). O processo envolve:
+          <ul class="reg-steps">
+            <li><span class="step-num">1</span><span><strong>Proposta fundamentada</strong> elaborada pelo Coordenador da CEEC com justificativa técnica e previsão de recursos (Art. 60, III)</span></li>
+            <li><span class="step-num">2</span><span><strong>Análise pela Diretoria</strong> – apreciação da viabilidade financeira e administrativa (Art. 104, III)</span></li>
+            <li><span class="step-num">3</span><span><strong>Apreciação pela Comissão de Orçamento e Tomada de Contas</strong> – parecer sobre impacto orçamentário (Art. 156)</span></li>
+            <li><span class="step-num">4</span><span><strong>Deliberação em Sessão Plenária</strong> – aprovação por maioria simples com pauta publicada com 15 dias de antecedência (Art. 14 e Art. 30, §2º)</span></li>
+          </ul>
+          <div class="timeline-badge">⏱️ Prazo estimado para aprovação: <strong style="margin-left:4px">aproximadamente 4 meses</strong></div>
+        </div>
+      </div>
+    </div>
     <div id="extra-events"></div>
   </div>
 </main>
  
-<div class="toast" id="toast">
-  <strong id="toast-title"></strong>
-  <span id="toast-msg"></span>
-</div>
- 
+<div class="toast" id="toast"><strong id="toast-title"></strong><span id="toast-msg"></span></div>
 <div class="modal-overlay" id="modal">
   <div class="modal-box">
     <h3 id="modal-title"></h3>
     <p id="modal-msg"></p>
     <div class="modal-actions">
       <button class="modal-btn cancel" onclick="resolveModal(false)">Cancelar</button>
-      <button class="modal-btn confirm" onclick="resolveModal(true)">Prosseguir</button>
+      <button class="modal-btn confirm" onclick="resolveModal(true)">Confirmar</button>
     </div>
   </div>
 </div>
@@ -463,56 +309,60 @@ var CONSELHEIROS=[
   {name:"Glayce Gabriela Nascimento Dias",tipo:"suplente"}
 ];
  
-// Eventos principais (orçamento aprovado)
+// EVENTS — dados da planilha atualizada
 var EVENTS=[
-  {id:1,name:"Ações de Fiscalização do CREA-PA",date:"A definir",local:"A definir",vagas:1,enrolled:[],diarias:12,vDiaria:635,passagem:800,at:185,inscricao:0,valor:8605,tipo:"internal",obs:"Ação institucional de fiscalização"},
-  {id:2,name:"Ações de Parcerias com Entidades (TCE-PA e COSANPA)",date:"A definir",local:"Fev a Nov",vagas:2,enrolled:[],diarias:0,vDiaria:0,passagem:0,at:0,inscricao:0,valor:15000,tipo:"internal",obs:"Ações de parceria institucional"},
-  {id:3,name:"9 Reuniões Ordinárias (Virtuais e/ou Presencial)",date:"A definir",local:"Belém-PA",vagas:8,enrolled:[],diarias:0,vDiaria:0,passagem:0,at:0,inscricao:0,jeton:300,valor:21600,tipo:"internal",obs:"Reuniões internas da Câmara"},
-  {id:4,name:"Reunião Ordinária CEEC – Marabá",date:"A definir",local:"Marabá",vagas:8,enrolled:[],diarias:2,vDiaria:635,passagem:1300,at:185,inscricao:0,jeton:300,valor:22040,tipo:"internal",obs:"Reunião CEEC presencial em Marabá"},
-  {id:5,name:"Reunião Ordinária CEEC – Santarém",date:"A definir",local:"Santarém",vagas:8,enrolled:[],diarias:2,vDiaria:635,passagem:1300,at:185,inscricao:0,jeton:300,valor:22040,tipo:"internal",obs:"Reunião CEEC presencial em Santarém"},
-  {id:6,name:"MundoGeo Connect 2026",date:"16 a 18 jun",local:"São Paulo – SP",vagas:1,enrolled:["Carolina da Silva Gonçalves"],diarias:3.5,vDiaria:829,passagem:2500,at:185,inscricao:1800,valor:7386.50,tipo:"consolidated",obs:"Evento de geotecnologia"},
+  {id:1,name:"Ações de Fiscalização do CREA-PA",date:"A definir",local:"A definir",vagas:1,enrolled:[],diarias:12,vDiaria:635,passagem:800,at:185,inscricao:0,valor:8605,tipo:"internal",obs:""},
+  {id:2,name:"Ações de Parcerias com Entidades (TCE-PA e COSANPA)",date:"A definir",local:"Fev a Nov",vagas:2,enrolled:["Helena Mendes dos Santos Fernandes"],diarias:0,vDiaria:0,passagem:0,at:0,inscricao:0,valor:15000,tipo:"internal",obs:""},
+  {id:3,name:"9 Reuniões Ordinárias (Virtuais e/ou Presencial)",date:"A definir",local:"Belém-PA",vagas:8,enrolled:["Patricia Lima Vieira Philippsen","Helena Mendes dos Santos Fernandes"],diarias:0,vDiaria:0,passagem:0,at:0,inscricao:0,jeton:300,valor:21600,tipo:"internal",obs:""},
+  {id:4,name:"Reunião Ordinária CEEC – Marabá",date:"A definir",local:"Marabá",vagas:8,enrolled:["Helena Mendes dos Santos Fernandes"],diarias:2,vDiaria:635,passagem:1300,at:185,inscricao:0,jeton:300,valor:22040,tipo:"internal",obs:""},
+  {id:5,name:"Reunião Ordinária CEEC – Santarém",date:"A definir",local:"Santarém",vagas:8,enrolled:["Patricia Lima Vieira Philippsen","Helena Mendes dos Santos Fernandes"],diarias:2,vDiaria:635,passagem:1300,at:185,inscricao:0,jeton:300,valor:22040,tipo:"internal",obs:""},
+  {id:6,name:"MundoGeo Connect 2026",date:"16 a 18 jun",local:"São Paulo – SP",vagas:1,enrolled:["Carolina da Silva Gonçalves"],diarias:3.5,vDiaria:829,passagem:2500,at:185,inscricao:1800,valor:7386.50,tipo:"consolidated",obs:"1 vaga + analista CREA"},
   {id:7,name:"XIV Conferência Nacional de Engenharia Ambiental – CONEAS 2026",date:"A definir",local:"Palmas – TO",vagas:2,enrolled:["Helena Mendes dos Santos Fernandes"],diarias:3.5,vDiaria:829,passagem:3200,at:185,inscricao:1800,valor:16173,tipo:"pending",obs:"1 vaga confirmada, 1 em aberto"},
-  {id:8,name:"37ª Encontro Técnico AESABESP – FENASAN 2026",date:"A definir",local:"A definir",vagas:2,enrolled:["Helena Mendes dos Santos Fernandes","Glayce Gabriela Nascimento Dias"],diarias:3.5,vDiaria:829,passagem:2500,at:185,inscricao:2500,valor:16173,tipo:"consolidated",hasSuplente:true,obs:"⚠️ Suplente inscrita — verificar regra de participação"},
-  {id:9,name:"XXIV COBREAP",date:"A definir",local:"A definir",vagas:4,enrolled:["Arthemio Scardino Guimaraes Junior","Jose da Silva Neves"],diarias:3.5,vDiaria:829,passagem:2500,at:185,inscricao:2500,valor:32346,tipo:"pending",obs:"2 vagas confirmadas, 2 em aberto"},
-  {id:10,name:"67ª IBRACON",date:"28 set a 03 out",local:"Natal – RN",vagas:4,enrolled:["Irandir de Castro Diniz","Marcus Vinicius Figueiredo Leal"],diarias:5,vDiaria:829,passagem:2200,at:185,inscricao:1800,valor:33320,tipo:"pending",obs:"2 vagas confirmadas, 2 em aberto"},
+  {id:8,name:"37ª Encontro Técnico AESABESP – FENASAN 2026",date:"A definir",local:"A definir",vagas:2,enrolled:["Valdinei Mendes da Silva","Helena Mendes dos Santos Fernandes"],diarias:3.5,vDiaria:829,passagem:2500,at:185,inscricao:2500,valor:16173,tipo:"consolidated",hasSuplente:false,coordenador:"Valdinei Mendes da Silva",suplenteBloqueada:"Glayce Gabriela Nascimento Dias",obs:"✅ Vagas preenchidas: Valdinei Mendes da Silva (Coordenador – prioridade) e Helena Mendes dos Santos Fernandes. Glayce Gabriela Nascimento Dias (suplente de Valdinei) está impedida de participar pois seu titular está presente — Art. 45, §2º do Regimento."},
+  {id:9,name:"XXIV COBREAP",date:"A definir",local:"A definir",vagas:4,enrolled:["Arthemio Scardino Guimaraes Junior","Jose da Silva Neves","Alexandre de Moraes Ferreira","Patricia Lima Vieira Philippsen"],diarias:3.5,vDiaria:829,passagem:2500,at:185,inscricao:2500,valor:32346,tipo:"consolidated",obs:"Vagas preenchidas"},
+  {id:10,name:"67ª IBRACON",date:"28 set a 03 out",local:"Natal – RN",vagas:4,enrolled:["Irandir de Castro Diniz","Marcus Vinicius Figueiredo Leal","Janilton Maciel Ugulino"],diarias:5,vDiaria:829,passagem:2200,at:185,inscricao:1800,valor:33320,tipo:"pending",obs:"3 vagas confirmadas, 1 em aberto"},
   {id:11,name:"Semana de Barragens",date:"20 a 26 set",local:"Belém – PA",vagas:4,enrolled:[],diarias:0,vDiaria:829,passagem:0,at:185,inscricao:2500,valor:10740,tipo:"pending",obs:"Evento local – vagas abertas"},
-  {id:12,name:"31ª CBENC",date:"6 a 4 nov",local:"Curitiba – PR",vagas:4,enrolled:["Irandir de Castro Diniz"],diarias:3.5,vDiaria:829,passagem:2500,at:185,inscricao:2500,valor:32346,tipo:"pending",obs:"1 vaga confirmada, 3 em aberto"},
+  {id:12,name:"31ª CBENC",date:"6 a 4 nov",local:"Curitiba – PR",vagas:4,enrolled:["Irandir de Castro Diniz","Arthemio Scardino Guimaraes Junior","Jose da Silva Neves","Alexandre de Moraes Ferreira","Patricia Lima Vieira Philippsen","Janilton Maciel Ugulino","Rui Dinamar Andrade"],diarias:3.5,vDiaria:829,passagem:2500,at:185,inscricao:2500,valor:32346,tipo:"overflow",obs:"⚠️ EXCESSO: 7 inscritos para 4 vagas aprovadas."},
   {id:13,name:"22ª COBRAMSEG",date:"24 a 28 ago",local:"Brasília – DF",vagas:2,enrolled:["Irandir de Castro Diniz"],diarias:5,vDiaria:829,passagem:1800,at:185,inscricao:2500,valor:17260,tipo:"pending",obs:"1 vaga confirmada, 1 em aberto"},
   {id:14,name:"8ª CONSTRUSUMMIT",date:"01 a 02 jul",local:"Florianópolis – SC",vagas:4,enrolled:["Patricia Lima Vieira Philippsen","Marcus Vinicius Figueiredo Leal"],diarias:3,vDiaria:829,passagem:3200,at:185,inscricao:2500,valor:33488,tipo:"pending",obs:"2 vagas confirmadas, 2 em aberto"},
   {id:15,name:"4 Reuniões CCEEC* (Brasília – CONFEA)",date:"A definir",local:"Brasília – DF",vagas:1,enrolled:[],diarias:3.5,vDiaria:829,passagem:1800,at:185,inscricao:0,valor:4886.50,tipo:"internal",obs:"Reuniões nacionais no CONFEA"},
-  {id:16,name:"4 Reuniões CCEAGRI* (Brasília – CONFEA)",date:"A definir",local:"Brasília – DF",vagas:1,enrolled:["Carolina da Silva Gonçalves"],diarias:3.5,vDiaria:829,passagem:1800,at:185,inscricao:0,valor:4886.50,tipo:"consolidated",obs:"Vaga ocupada por Carolina da Silva Gonçalves"}
+  {id:16,name:"4 Reuniões CCEAGRI* (Brasília – CONFEA)",date:"A definir",local:"Brasília – DF",vagas:1,enrolled:["Carolina da Silva Gonçalves"],diarias:3.5,vDiaria:829,passagem:1800,at:185,inscricao:0,valor:4886.50,tipo:"consolidated",obs:"Vaga confirmada"}
 ];
  
-// Eventos em análise (sem orçamento ainda)
+// Eventos NÃO aprovados
 var EXTRA_BASE=[
-  {xid:"x1",name:"Sanea Brasil – Congresso Internacional de Saneamento Rural",date:"6 a 9 dez 2026",local:"Petrolina – PE",sugestoes:["Glayce Gabriela Nascimento Dias","Helena Mendes dos Santos Fernandes"]},
-  {xid:"x2",name:"Geoinfo – XXVI Simpósio Brasileiro de Geoinformática",date:"7 a 9 dez",local:"São José dos Campos – SP",sugestoes:[]},
-  {xid:"x3",name:"Congresso Brasileiro das Patologias das Construções",date:"24 a 27 jun",local:"São Paulo – SP",sugestoes:["Janilton Maciel Ugulino"]},
-  {xid:"x4",name:"Encontro Nacional de Conservação Rodoviária",date:"22 a 25 jun",local:"Goiânia – GO",sugestoes:["Irandir de Castro Diniz","Marcus Vinicius Figueiredo Leal"]},
-  {xid:"x5",name:"5º Congresso Internacional de Engenharia Ambiental Luso-Brasileiro",date:"1 a 3 set 2026",local:"Curitiba – PR",sugestoes:["Helena Mendes dos Santos Fernandes","Glayce Gabriela Nascimento Dias"]},
-  {xid:"x6",name:"XIV Colóquio Brasileiro de Ciências Geodésicas",date:"23 a 25 set 2026",local:"Curitiba – PR",sugestoes:["Irandir de Castro Diniz"]}
+  {xid:"x1",name:"Sanea Brasil – Congresso Internacional de Saneamento Rural",date:"6 a 9 dez 2026",local:"Petrolina – PE",vagas:3,sugestoes:["Glayce Gabriela Nascimento Dias","Helena Mendes dos Santos Fernandes","Patricia Lima Vieira Philippsen"]},
+  {xid:"x2",name:"Geoinfo – XXVI Simpósio Brasileiro de Geoinformática",date:"7 a 9 dez",local:"São José dos Campos – SP",vagas:"1 + analista",sugestoes:[]},
+  {xid:"x3",name:"Congresso Brasileiro das Patologias das Construções",date:"24 a 27 jun",local:"São Paulo – SP",vagas:null,sugestoes:["Janilton Maciel Ugulino"]},
+  {xid:"x4",name:"Encontro Nacional de Conservação Rodoviária",date:"22 a 25 jun",local:"Goiânia – GO",vagas:null,sugestoes:["Irandir de Castro Diniz","Marcus Vinicius Figueiredo Leal"]},
+  {xid:"x5",name:"5º Congresso Internacional de Engenharia Ambiental Luso-Brasileiro",date:"1 a 3 set 2026",local:"Curitiba – PR",vagas:3,sugestoes:["Helena Mendes dos Santos Fernandes","Glayce Gabriela Nascimento Dias"]},
+  {xid:"x6",name:"XIV Colóquio Brasileiro de Ciências Geodésicas",date:"23 a 25 set 2026",local:"Curitiba – PR",vagas:"1 + analista",sugestoes:["Irandir de Castro Diniz"]},
+  {xid:"x7",name:"22º SILUBESA – Simpósio Luso-Brasileiro de Engenharia Sanitária e Ambiental",date:"Outubro 2026",local:"Algarve – Portugal",vagas:null,sugestoes:[],obs:"⚠️ Evento internacional — exige aprovação do Plenário E encaminhamento prévio ao CONFEA (Art. 210, §2º do Regimento)."}
 ];
  
 // ============ STORAGE ============
 var _mem={};
 function sGet(k){try{return localStorage.getItem(k);}catch(e){return _mem[k]||null;}}
 function sSet(k,v){try{localStorage.setItem(k,v);}catch(e){_mem[k]=v;}}
+var SK='crea_ceec_2026';
+var SK_EXTRA='crea_ceec_extra_2026';
+var SK_EDITS='crea_ceec_edits_2026';
+var SK_PROMOTED='crea_ceec_promoted_2026';
  
-var SK='crea_pa_2026';
-var SK_EXTRA='crea_pa_extra_2026';
-var SK_PROMOTED='crea_pa_promoted_2026';
- 
-function getIns(){try{return JSON.parse(sGet(SK)||'{}');}catch(e){return {};}}
+function getIns(){try{return JSON.parse(sGet(SK)||'{}');}catch(e){return{};}}
 function saveIns(eid,name){var d=getIns();if(!d[eid])d[eid]=[];if(d[eid].indexOf(name)<0)d[eid].push(name);sSet(SK,JSON.stringify(d));}
 function delIns(eid,name){var d=getIns();if(d[eid])d[eid]=d[eid].filter(function(n){return n!==name;});sSet(SK,JSON.stringify(d));}
  
-// Dados editáveis dos extras (salvos pelo usuário)
-function getExtraData(){try{return JSON.parse(sGet(SK_EXTRA)||'{}');}catch(e){return {};}}
+function getEdits(){try{return JSON.parse(sGet(SK_EDITS)||'{}');}catch(e){return{};}}
+function saveEdit(eid,data){var d=getEdits();d[eid]=data;sSet(SK_EDITS,JSON.stringify(d));}
+ 
+function getExtraData(){try{return JSON.parse(sGet(SK_EXTRA)||'{}');}catch(e){return{};}}
 function saveExtraData(xid,data){var d=getExtraData();d[xid]=data;sSet(SK_EXTRA,JSON.stringify(d));}
  
-// Extras que foram "promovidos" para a lista principal
-function getPromoted(){try{return JSON.parse(sGet(SK_PROMOTED)||'[]');}catch(e){return [];}}
+function getPromoted(){try{return JSON.parse(sGet(SK_PROMOTED)||'[]');}catch(e){return[];}}
 function savePromoted(list){sSet(SK_PROMOTED,JSON.stringify(list));}
+ 
+function getAllEvents(){return EVENTS.concat(getPromoted());}
  
 // ============ MODAL ============
 var _mRes=null;
@@ -530,38 +380,31 @@ function showToast(title,msg,ok){
   var t=document.getElementById('toast');
   document.getElementById('toast-title').textContent=title;
   document.getElementById('toast-msg').textContent=msg;
-  t.style.borderLeftColor=ok?'#16a34a':'#d97706';
+  t.style.borderLeftColor=ok?'#86efac':'#fde68a';
   t.classList.add('show');
   if(_tt)clearTimeout(_tt);
   _tt=setTimeout(function(){t.classList.remove('show');},3500);
 }
  
 // ============ SUMMARY ============
-function getAllEvents(){
-  var promoted=getPromoted();
-  return EVENTS.concat(promoted);
-}
- 
 function renderSummary(){
-  var all=getAllEvents();
+  var all=getAllEvents().filter(function(e){return e.tipo!=='overflow'||true;});
   var tot=all.length;
+  var over=all.filter(function(e){return e.tipo==='overflow';}).length;
   var con=all.filter(function(e){return e.tipo==='consolidated';}).length;
   var pen=all.filter(function(e){return e.tipo==='pending';}).length;
-  var bud=all.reduce(function(s,e){return s+(e.valor||0);},0);
-  var tit=CONSELHEIROS.filter(function(c){return c.tipo==='titular';}).length;
-  var analise=EXTRA_BASE.filter(function(x){
-    var promoted=getPromoted();
-    return !promoted.some(function(p){return p.xid===x.xid;});
-  }).length;
+  var bud=EVENTS.reduce(function(s,e){return s+(e.valor||0);},0);
+  var analise=EXTRA_BASE.filter(function(x){var p=getPromoted();return !p.some(function(pp){return pp.xid===x.xid;});}).length;
   document.getElementById('summary-cards').innerHTML=
-    '<div class="sum-card total"><label>Total de Eventos</label><div class="value">'+tot+'</div><small>orçamento aprovado</small></div>'+
-    '<div class="sum-card consolidated"><label>Consolidados</label><div class="value">'+con+'</div><small>vagas preenchidas</small></div>'+
-    '<div class="sum-card pending"><label>Aguardando</label><div class="value">'+pen+'</div><small>vagas em aberto</small></div>'+
-    '<div class="sum-card budget"><label>Orçamento</label><div class="value">R$'+Math.round(bud/1000)+'k</div><small>exercício 2026</small></div>'+
-    '<div class="sum-card analise"><label>Em Análise</label><div class="value">'+analise+'</div><small>sem orçamento</small></div>';
+    '<div class="sum-card s-total"><label>Total Aprovados</label><div class="value">'+tot+'</div><small>no planejamento</small></div>'+
+    (over?'<div class="sum-card s-over"><label>⛔ Excesso</label><div class="value">'+over+'</div><small>mais inscritos que vagas</small></div>':'')+
+    '<div class="sum-card s-ok"><label>Consolidados</label><div class="value">'+con+'</div><small>vagas preenchidas</small></div>'+
+    '<div class="sum-card s-pend"><label>Aguardando</label><div class="value">'+pen+'</div><small>vagas em aberto</small></div>'+
+    '<div class="sum-card s-budget"><label>Orçamento</label><div class="value">R$'+Math.round(bud/1000)+'k</div><small>total aprovado</small></div>'+
+    '<div class="sum-card s-analise"><label>Não Aprovados</label><div class="value">'+analise+'</div><small>fora do plano</small></div>';
 }
  
-// ============ EVENTS (lista principal) ============
+// ============ FILTER / RENDER ============
 var currentFilter='all';
 function filterEvents(type,btn){
   currentFilter=type;
@@ -570,9 +413,18 @@ function filterEvents(type,btn){
   renderEvents();
 }
 function toggleEvent(id){document.getElementById('ev-'+id).classList.toggle('open');}
+function toggleEditPanel(id){
+  var p=document.getElementById('ep-'+id);
+  var b=document.getElementById('eb-'+id);
+  if(!p)return;
+  var isOpen=p.classList.toggle('open');
+  b.classList.toggle('active',isOpen);
+  b.textContent=isOpen?'✖ Fechar edição':'✏️ Editar informações';
+}
  
 function renderEvents(){
   var ins=getIns();
+  var edits=getEdits();
   var all=getAllEvents();
   var list=document.getElementById('events-list');
   var filtered=currentFilter==='all'?all:all.filter(function(e){return e.tipo===currentFilter;});
@@ -581,22 +433,63 @@ function renderEvents(){
     var uEnr=ins[ev.id]||[];
     var allEnr=ev.enrolled.concat(uEnr.filter(function(n){return ev.enrolled.indexOf(n)<0;}));
     var filled=allEnr.length;
-    var pct=Math.min(100,Math.round(filled/ev.vagas*100));
+    var isOver=filled>ev.vagas;
+    var pct=Math.min(110,Math.round(filled/ev.vagas*100));
     var isFull=filled>=ev.vagas;
     var hasSup=ev.hasSuplente||allEnr.some(function(n){return CONSELHEIROS.some(function(c){return c.name===n&&c.tipo==='suplente';});});
-    var slbl=ev.tipo==='consolidated'?'Consolidado':ev.tipo==='internal'?'Interno':'Aguardando';
-    var scls=ev.tipo==='consolidated'?'status-consolidated':ev.tipo==='internal'?'status-internal':'status-pending';
+    var displayTipo=ev.tipo;
+    if(isOver)displayTipo='overflow';
+ 
+    var slbl=displayTipo==='consolidated'?'Consolidado':displayTipo==='internal'?'Interno':displayTipo==='overflow'?'⛔ Excesso':'Aguardando';
+    var scls=displayTipo==='consolidated'?'status-consolidated':displayTipo==='internal'?'status-internal':displayTipo==='overflow'?'status-overflow':'status-pending';
+    var cardCls=displayTipo;
+ 
+    // Cost data — use edits if available
+    var ed=edits[ev.id]||{};
+    var d=ed.date||ev.date; var lc=ed.local||ev.local;
+    var vd=ed.vDiaria!==undefined?ed.vDiaria:ev.vDiaria;
+    var dias=ed.diarias!==undefined?ed.diarias:ev.diarias;
+    var pass=ed.passagem!==undefined?ed.passagem:ev.passagem;
+    var at=ed.at!==undefined?ed.at:ev.at;
+    var insc=ed.inscricao!==undefined?ed.inscricao:ev.inscricao;
+    var jet=ed.jeton!==undefined?ed.jeton:(ev.jeton||0);
+    var val=ed.valor||ev.valor;
+    var vagas=ed.vagas||ev.vagas;
+    var obs=ed.obs||ev.obs;
+ 
+    // Tags
+    var isCoordEvent=!!ev.coordenador;
+    var bloqueada=ev.suplenteBloqueada||null;
  
     var tags=CONSELHEIROS.map(function(c){
       var isEnr=allEnr.some(function(n){return n.toLowerCase().indexOf(c.name.split(' ')[0].toLowerCase())>=0||c.name.toLowerCase().indexOf(n.split(' ')[0].toLowerCase())>=0;});
       var isSup=c.tipo==='suplente';
       var isUEnr=uEnr.indexOf(c.name)>=0;
       var safe=c.name.replace(/'/g,"\\'");
+      var idx=allEnr.findIndex(function(n){return n.toLowerCase().indexOf(c.name.split(' ')[0].toLowerCase())>=0||c.name.toLowerCase().indexOf(n.split(' ')[0].toLowerCase())>=0;});
+      var isExcess=isOver&&idx>=ev.vagas;
+      var isCoordenador=ev.coordenador&&ev.coordenador.toLowerCase().indexOf(c.name.split(' ')[0].toLowerCase())>=0;
+      // Suplente impedida: seu titular está inscrito neste evento
+      var isBloqueada=bloqueada&&c.name===bloqueada&&!isEnr;
+ 
       if(isEnr){
-        return '<div class="conselheiro-tag '+(isSup?'suplente-tag':'enrolled')+'">'
-          +'<span class="dot '+(isSup?'dot-amber':'dot-green')+'"></span>'
-          +c.name+(isSup?' <em style="font-size:10px">(suplente)</em>':'')
+        var cls=isExcess?'overflow-enrolled':(isSup?'suplente-tag':'enrolled');
+        var dotc=isExcess?'dot-red':(isSup?'dot-amber':'dot-green');
+        return '<div class="conselheiro-tag '+cls+'">'
+          +'<span class="dot '+dotc+'"></span>'
+          +c.name
+          +(isCoordenador?' <em style="font-size:10px;color:#2563a8;font-weight:700">👑 Coordenador</em>':'')
+          +(isSup&&!isCoordenador?' <em style="font-size:10px">(suplente)</em>':'')
+          +(isExcess?' <em style="font-size:10px;font-weight:700">⚠️ excedente</em>':'')
           +(isUEnr?'<button class="remove-btn" onclick="event.stopPropagation();removeUser(\''+ev.id+'\',\''+safe+'\')">×</button>':'')
+          +'</div>';
+      }
+      // Suplente bloqueada: titular presente, não pode participar
+      if(isBloqueada){
+        return '<div class="conselheiro-tag" style="background:var(--red-bg);border:1px solid var(--red-bd);opacity:.85;cursor:not-allowed;">'
+          +'<span class="dot dot-red"></span>'
+          +c.name
+          +' <em style="font-size:10px;color:var(--red);font-weight:700">🚫 impedida — titular presente (Art. 45)</em>'
           +'</div>';
       }
       if(!isFull){
@@ -608,35 +501,71 @@ function renderEvents(){
       return '<div class="conselheiro-tag" style="opacity:.35"><span class="dot dot-muted"></span>'+c.name+(isSup?' <em style="font-size:10px">(suplente)</em>':'')+'</div>';
     }).join('');
  
-    var supWarn=hasSup?'<div class="suplente-notice"><span>⚠️</span><span>Este evento contém <strong>Glayce Gabriela Nascimento Dias (Suplente)</strong>. Titular e Suplente <strong>não podem participar do mesmo evento</strong>.</span></div>':'';
+    var overflowAlert=isOver?'<div class="overflow-alert"><span>⛔</span><span><strong>Excesso de inscritos:</strong> Este evento possui <strong>'+filled+' conselheiros inscritos</strong> para apenas <strong>'+ev.vagas+' vagas aprovadas</strong> no orçamento. Os inscritos marcados como <strong>⚠️ excedente</strong> ultrapassam o limite. É necessário deliberação para ajuste.</span></div>':'';
+ 
+    // Aviso específico quando suplente está bloqueada por titular presente
+    var bloqWarn=bloqueada&&!isOver?'<div class="suplente-notice" style="background:var(--red-bg);border-color:var(--red-bd);color:var(--red);margin-top:8px;">'
+      +'<span>🚫</span><span><strong>'+bloqueada+'</strong> é suplente de <strong>'+ev.coordenador+'</strong>, que está inscrito neste evento como Coordenador da Câmara. '
+      +'Pelo <strong>Art. 45 do Regimento do CREA-PA</strong>, é vedada a participação do suplente quando o titular está no exercício da função. '
+      +'Glayce está <strong>impedida de participar deste evento</strong>.</span>'
+      +'</div>':'';
+    var supWarn=hasSup&&!isOver&&!bloqueada?'<div class="suplente-notice"><span>⚠️</span><span>Evento com <strong>Glayce Gabriela Nascimento Dias (Suplente)</strong>. Titular e Suplente <strong>não podem participar do mesmo evento</strong> (Art. 45 do Regimento).</span></div>':'';
+ 
     var crows='';
-    if(ev.diarias)crows+='<tr><td>Diárias ('+ev.diarias+' × R$'+ev.vDiaria+')</td><td>R$'+(ev.diarias*ev.vDiaria).toLocaleString('pt-BR')+'</td></tr>';
-    if(ev.passagem)crows+='<tr><td>Passagem</td><td>R$'+ev.passagem.toLocaleString('pt-BR')+'</td></tr>';
-    if(ev.at)crows+='<tr><td>AT</td><td>R$'+ev.at.toLocaleString('pt-BR')+'</td></tr>';
-    if(ev.inscricao)crows+='<tr><td>Inscrição</td><td>R$'+ev.inscricao.toLocaleString('pt-BR')+'</td></tr>';
-    if(ev.jeton)crows+='<tr><td>Jeton</td><td>R$'+ev.jeton.toLocaleString('pt-BR')+'</td></tr>';
-    var costs=crows?'<table class="cost-table">'+crows+'<tr style="border-top:1px solid var(--border)"><td><strong>Total/conselheiro</strong></td><td><strong>R$'+ev.valor.toLocaleString('pt-BR')+'</strong></td></tr></table>':'<p style="color:var(--muted);font-size:12px">Sem detalhamento disponível</p>';
-    var fc=pct>=100?'fill-full':pct>0?'fill-partial':'fill-empty';
+    if(dias)crows+='<tr><td>Diárias ('+dias+' × R$'+vd+')</td><td>R$'+(dias*vd).toLocaleString('pt-BR')+'</td></tr>';
+    if(pass)crows+='<tr><td>Passagem</td><td>R$'+Number(pass).toLocaleString('pt-BR')+'</td></tr>';
+    if(at)crows+='<tr><td>AT</td><td>R$'+Number(at).toLocaleString('pt-BR')+'</td></tr>';
+    if(insc)crows+='<tr><td>Inscrição</td><td>R$'+Number(insc).toLocaleString('pt-BR')+'</td></tr>';
+    if(jet)crows+='<tr><td>Jeton</td><td>R$'+Number(jet).toLocaleString('pt-BR')+'</td></tr>';
+    var costs=crows?'<table class="cost-table">'+crows+'<tr style="border-top:1px solid var(--border)"><td><strong>Total/conselheiro</strong></td><td><strong>R$'+Number(val).toLocaleString('pt-BR')+'</strong></td></tr></table>':'<p style="color:var(--muted);font-size:12px">Sem detalhamento</p>';
+    var fc=isOver?'fill-over':pct>=100?'fill-full':pct>0?'fill-partial':'fill-empty';
  
-    var promotedNote=ev.xid?'<p style="font-size:11px;color:#7c3aed;margin-top:8px">✦ Promovido da lista em análise</p>':'';
+    // Edit panel (only for consolidated or overflow)
+    var editPanel='';
+    var canEdit=(ev.tipo==='consolidated'||ev.tipo==='overflow');
+    if(canEdit){
+      editPanel='<button class="edit-toggle-btn" id="eb-'+ev.id+'" onclick="event.stopPropagation();toggleEditPanel(\''+ev.id+'\')">✏️ Editar informações</button>'
+        +'<div class="edit-panel" id="ep-'+ev.id+'">'
+          +'<div class="edit-panel-title">✏️ Editar dados do evento</div>'
+          +'<div class="form-grid">'
+            +'<div class="form-group"><label>Data</label><input class="form-input" id="ed_date_'+ev.id+'" type="text" value="'+d+'" placeholder="Data do evento"></div>'
+            +'<div class="form-group"><label>Local</label><input class="form-input" id="ed_local_'+ev.id+'" type="text" value="'+lc+'" placeholder="Local"></div>'
+            +'<div class="form-group"><label>Vagas aprovadas</label><input class="form-input" id="ed_vagas_'+ev.id+'" type="number" value="'+vagas+'" min="1"></div>'
+            +'<div class="form-group"><label>Diárias (qtd)</label><input class="form-input" id="ed_diarias_'+ev.id+'" type="number" step="0.5" value="'+dias+'" oninput="calcEdit(\''+ev.id+'\')"></div>'
+            +'<div class="form-group"><label>Valor diária (R$)</label><input class="form-input" id="ed_vdiaria_'+ev.id+'" type="number" value="'+vd+'" oninput="calcEdit(\''+ev.id+'\')"></div>'
+            +'<div class="form-group"><label>Passagem (R$)</label><input class="form-input" id="ed_passagem_'+ev.id+'" type="number" value="'+pass+'" oninput="calcEdit(\''+ev.id+'\')"></div>'
+            +'<div class="form-group"><label>AT (R$)</label><input class="form-input" id="ed_at_'+ev.id+'" type="number" value="'+at+'" oninput="calcEdit(\''+ev.id+'\')"></div>'
+            +'<div class="form-group"><label>Inscrição (R$)</label><input class="form-input" id="ed_inscricao_'+ev.id+'" type="number" value="'+insc+'" oninput="calcEdit(\''+ev.id+'\')"></div>'
+            +'<div class="form-group"><label>Jeton (R$)</label><input class="form-input" id="ed_jeton_'+ev.id+'" type="number" value="'+jet+'" oninput="calcEdit(\''+ev.id+'\')"></div>'
+          +'</div>'
+          +'<div class="form-grid full" style="margin-top:8px"><div class="form-group"><label>Observações</label><input class="form-input" id="ed_obs_'+ev.id+'" type="text" value="'+obs+'" placeholder="Observações..."></div></div>'
+          +'<div class="valor-preview"><span>💰 Total estimado / conselheiro</span><strong id="ed_total_'+ev.id+'">R$'+Number(val).toLocaleString('pt-BR')+'</strong></div>'
+          +'<button class="form-save-btn" onclick="event.stopPropagation();saveEventEdit(\''+ev.id+'\')">💾 Salvar alterações</button>'
+        +'</div>';
+    }
  
-    return '<div class="event-card '+ev.tipo+'" id="ev-'+ev.id+'" onclick="toggleEvent(\''+ev.id+'\')">'
+    return '<div class="event-card '+cardCls+'" id="ev-'+ev.id+'" onclick="toggleEvent(\''+ev.id+'\')">'
       +'<div class="event-header">'
         +'<div class="event-main-info">'
           +'<div class="event-name">'+ev.name+'</div>'
-          +'<div class="event-meta"><span class="meta-pill">📅 '+ev.date+'</span><span class="meta-pill">📍 '+ev.local+'</span><span class="meta-pill">👥 '+filled+'/'+ev.vagas+'</span></div>'
+          +'<div class="event-meta">'
+            +'<span class="meta-pill">📅 '+d+'</span>'
+            +'<span class="meta-pill">📍 '+lc+'</span>'
+            +'<span class="meta-pill '+(isOver?'overflow-pill':'')+'">👥 '+filled+'/'+vagas+(isOver?' ⛔':'')+'</span>'
+            +(ev.coordenador?'<span class="meta-pill" style="background:#eff6ff;border-color:#bfdbfe;color:#1d4ed8;">👑 Coord: '+ev.coordenador.split(' ')[0]+' '+ev.coordenador.split(' ')[1]+'</span>':'')
+          +'</div>'
         +'</div>'
         +'<div class="event-right">'
           +'<span class="event-status '+scls+'">'+slbl+'</span>'
-          +(ev.valor?'<span class="event-valor">R$'+ev.valor.toLocaleString('pt-BR')+'</span>':'')
+          +(val?'<span class="event-valor">R$'+Number(val).toLocaleString('pt-BR')+'</span>':'')
           +'<span class="chevron">▼</span>'
         +'</div>'
       +'</div>'
       +'<div class="event-detail" onclick="event.stopPropagation()">'
-        +'<div class="vagas-bar-wrap"><div class="vagas-label"><span>Ocupação</span><span>'+filled+' de '+ev.vagas+' ('+pct+'%)</span></div><div class="vagas-bar"><div class="vagas-fill '+fc+'" style="width:'+pct+'%"></div></div></div>'
-        +supWarn
+        +'<div class="vagas-bar-wrap"><div class="vagas-label"><span>Ocupação</span><span>'+filled+' de '+vagas+' ('+pct+'%)</span></div><div class="vagas-bar"><div class="vagas-fill '+fc+'" style="width:'+Math.min(pct,100)+'%"></div></div></div>'
+        +overflowAlert+bloqWarn+supWarn
         +'<div class="detail-grid">'
-          +'<div class="detail-section"><h4>Conselheiros(as) — toque para se inscrever</h4><div class="conselheiros-grid">'+tags+'</div>'+(ev.obs?'<p style="font-size:11px;color:var(--muted);margin-top:5px">ℹ️ '+ev.obs+'</p>':'')+promotedNote+'</div>'
+          +'<div class="detail-section"><h4>Conselheiros(as) — toque para se inscrever</h4><div class="conselheiros-grid">'+tags+'</div>'+(obs?'<p style="font-size:11px;color:var(--muted);margin-top:5px">ℹ️ '+obs+'</p>':'')+editPanel+'</div>'
           +'<div class="detail-section"><h4>Composição do Orçamento</h4>'+costs+'</div>'
         +'</div>'
       +'</div>'
@@ -644,7 +573,40 @@ function renderEvents(){
   }).join('');
 }
  
-// ============ INSCRIÇÃO ============
+// Edit calc
+function calcEdit(eid){
+  var d=Number(document.getElementById('ed_diarias_'+eid).value)||0;
+  var vd=Number(document.getElementById('ed_vdiaria_'+eid).value)||0;
+  var p=Number(document.getElementById('ed_passagem_'+eid).value)||0;
+  var at=Number(document.getElementById('ed_at_'+eid).value)||0;
+  var ins=Number(document.getElementById('ed_inscricao_'+eid).value)||0;
+  var j=Number(document.getElementById('ed_jeton_'+eid).value)||0;
+  var v=(d*vd)+p+at+ins+j;
+  var el=document.getElementById('ed_total_'+eid);
+  if(el)el.textContent='R$'+v.toLocaleString('pt-BR');
+  return v;
+}
+ 
+function saveEventEdit(eid){
+  var data={
+    date:document.getElementById('ed_date_'+eid).value,
+    local:document.getElementById('ed_local_'+eid).value,
+    vagas:Number(document.getElementById('ed_vagas_'+eid).value)||0,
+    diarias:Number(document.getElementById('ed_diarias_'+eid).value)||0,
+    vDiaria:Number(document.getElementById('ed_vdiaria_'+eid).value)||0,
+    passagem:Number(document.getElementById('ed_passagem_'+eid).value)||0,
+    at:Number(document.getElementById('ed_at_'+eid).value)||0,
+    inscricao:Number(document.getElementById('ed_inscricao_'+eid).value)||0,
+    jeton:Number(document.getElementById('ed_jeton_'+eid).value)||0,
+    obs:document.getElementById('ed_obs_'+eid).value,
+    valor:calcEdit(eid)
+  };
+  saveEdit(eid,data);
+  showToast('Alterações salvas!','Dados do evento atualizados neste dispositivo.',true);
+  renderEvents();
+}
+ 
+// ============ INSCRICAO ============
 function enrollUser(eid,name){
   var all=getAllEvents();
   var ev=all.find(function(e){return String(e.id)===String(eid);});
@@ -652,30 +614,31 @@ function enrollUser(eid,name){
   var ins=getIns();
   var uEnr=ins[eid]||[];
   var allEnr=ev.enrolled.concat(uEnr);
-  if(allEnr.length>=ev.vagas){showToast('Vagas esgotadas','Não há vagas disponíveis neste evento.',false);return;}
   var c=CONSELHEIROS.find(function(c){return c.name===name;});
   var isSup=c&&c.tipo==='suplente';
   var supPres=allEnr.some(function(n){return n.toLowerCase().indexOf('glayce')>=0;});
+ 
   if(isSup&&allEnr.length>0){
-    showModal('⚠️ Conflito de Participação','Já há conselheiro(a) titular inscrito(a). Titular e Suplente NÃO podem participar do mesmo evento. Deseja prosseguir mesmo assim?').then(function(ok){if(ok)doEnroll(eid,name);});
+    showModal('⚠️ Conflito – Art. 45 do Regimento','Já há conselheiro(a) titular inscrito(a). Titular e Suplente NÃO podem participar do mesmo evento. Deseja prosseguir mesmo assim?').then(function(ok){if(ok)doEnroll(eid,name);});
     return;
   }
   if(!isSup&&supPres){
-    showModal('⚠️ Conflito de Participação','A suplente Glayce já está inscrita. Titular e Suplente NÃO podem participar do mesmo evento. Deseja prosseguir mesmo assim?').then(function(ok){if(ok)doEnroll(eid,name);});
+    showModal('⚠️ Conflito – Art. 45 do Regimento','A suplente Glayce Gabriela Nascimento Dias já está inscrita. Titular e Suplente NÃO podem participar do mesmo evento. Deseja prosseguir mesmo assim?').then(function(ok){if(ok)doEnroll(eid,name);});
+    return;
+  }
+  if(allEnr.length>=ev.vagas){
+    showModal('⚠️ Vagas esgotadas','Este evento já atingiu o número de vagas aprovadas no orçamento ('+ev.vagas+'). Inscrever mais participantes configura excesso. Deseja prosseguir mesmo assim?').then(function(ok){if(ok)doEnroll(eid,name);});
     return;
   }
   doEnroll(eid,name);
 }
-function doEnroll(eid,name){saveIns(eid,name);showToast('Inscrição registrada!',name+' adicionado(a) ao evento.',true);renderEvents();renderSummary();}
-function removeUser(eid,name){delIns(eid,name);showToast('Inscrição removida',name+' foi removido(a) do evento.',false);renderEvents();}
+function doEnroll(eid,name){saveIns(eid,name);showToast('Inscrição registrada!',name+' adicionado(a).',true);renderEvents();renderSummary();}
+function removeUser(eid,name){delIns(eid,name);showToast('Inscrição removida',name+' removido(a).',false);renderEvents();renderSummary();}
  
-// ============ EXTRA EVENTS — EDIÇÃO E PROMOÇÃO ============
-function toggleExtra(xid){
-  var el=document.getElementById('ex-'+xid);
-  if(el)el.classList.toggle('open');
-}
+// ============ EXTRA EVENTS ============
+function toggleExtra(xid){var el=document.getElementById('ex-'+xid);if(el)el.classList.toggle('open');}
  
-function calcValor(xid){
+function calcValorExtra(xid){
   var d=Number(document.getElementById('f_diarias_'+xid).value)||0;
   var vd=Number(document.getElementById('f_vdiaria_'+xid).value)||0;
   var p=Number(document.getElementById('f_passagem_'+xid).value)||0;
@@ -690,119 +653,61 @@ function calcValor(xid){
  
 function saveExtraForm(xid){
   var data={
-    date: document.getElementById('f_date_'+xid).value,
-    local: document.getElementById('f_local_'+xid).value,
-    vagas: Number(document.getElementById('f_vagas_'+xid).value)||0,
-    diarias: Number(document.getElementById('f_diarias_'+xid).value)||0,
-    vDiaria: Number(document.getElementById('f_vdiaria_'+xid).value)||0,
-    passagem: Number(document.getElementById('f_passagem_'+xid).value)||0,
-    at: Number(document.getElementById('f_at_'+xid).value)||0,
-    inscricao: Number(document.getElementById('f_inscricao_'+xid).value)||0,
-    jeton: Number(document.getElementById('f_jeton_'+xid).value)||0,
-    obs: document.getElementById('f_obs_'+xid).value,
-    valor: calcValor(xid)
+    date:document.getElementById('f_date_'+xid).value,
+    local:document.getElementById('f_local_'+xid).value,
+    vagas:Number(document.getElementById('f_vagas_'+xid).value)||0,
+    diarias:Number(document.getElementById('f_diarias_'+xid).value)||0,
+    vDiaria:Number(document.getElementById('f_vdiaria_'+xid).value)||0,
+    passagem:Number(document.getElementById('f_passagem_'+xid).value)||0,
+    at:Number(document.getElementById('f_at_'+xid).value)||0,
+    inscricao:Number(document.getElementById('f_inscricao_'+xid).value)||0,
+    jeton:Number(document.getElementById('f_jeton_'+xid).value)||0,
+    valor:calcValorExtra(xid)
   };
   saveExtraData(xid,data);
-  showToast('Dados salvos!','As informações foram guardadas neste dispositivo.',true);
-}
- 
-function promoteExtra(xid){
-  var base=EXTRA_BASE.find(function(x){return x.xid===xid;});
-  if(!base)return;
-  var data=getExtraData()[xid]||{};
-  if(!data.vagas||data.vagas<1){showToast('Atenção','Informe pelo menos o número de vagas antes de promover.',false);return;}
- 
-  showModal('Mover para lista principal?',
-    '"'+base.name+'" será adicionado à lista de eventos com orçamento. Confirma?'
-  ).then(function(ok){
-    if(!ok)return;
-    var promoted=getPromoted();
-    // id único baseado em timestamp
-    var newId='p_'+Date.now();
-    var ev={
-      id: newId,
-      xid: xid,
-      name: base.name,
-      date: data.date||base.date,
-      local: data.local||base.local,
-      vagas: data.vagas||2,
-      enrolled: base.sugestoes||[],
-      diarias: data.diarias||0,
-      vDiaria: data.vDiaria||829,
-      passagem: data.passagem||0,
-      at: data.at||0,
-      inscricao: data.inscricao||0,
-      jeton: data.jeton||0,
-      valor: data.valor||0,
-      tipo: 'pending',
-      obs: data.obs||'Promovido da lista em análise'
-    };
-    promoted.push(ev);
-    savePromoted(promoted);
-    showToast('Evento promovido! ✅',base.name+' agora aparece na lista principal.',true);
-    renderSummary();
-    renderEvents();
-    renderExtra();
-  });
+  showToast('Rascunho salvo!','Dados guardados. Lembre-se: a inclusão no plano requer aprovação plenária.',true);
 }
  
 function renderExtra(){
   var promoted=getPromoted();
   var extraData=getExtraData();
   var container=document.getElementById('extra-events');
- 
-  // Filtra os que ainda não foram promovidos
-  var remaining=EXTRA_BASE.filter(function(x){
-    return !promoted.some(function(p){return p.xid===x.xid;});
-  });
- 
-  if(remaining.length===0){
-    container.innerHTML='<p style="font-size:13px;color:#16a34a;padding:10px 0">✅ Todos os eventos em análise já foram promovidos para a lista principal!</p>';
-    return;
-  }
+  var remaining=EXTRA_BASE.filter(function(x){return !promoted.some(function(p){return p.xid===x.xid;});});
+  if(remaining.length===0){container.innerHTML='<p style="font-size:13px;color:var(--green);padding:10px 0">✅ Todos os eventos foram incluídos no planejamento após aprovação.</p>';return;}
  
   container.innerHTML=remaining.map(function(ex){
     var saved=extraData[ex.xid]||{};
-    var isOpen=false;
- 
+    var isInt=ex.xid==='x7'; // international
     return '<div class="extra-card" id="ex-'+ex.xid+'">'
       +'<div class="extra-header" onclick="toggleExtra(\''+ex.xid+'\')">'
         +'<div class="extra-header-left">'
-          +'<div class="extra-title">'+ex.name+'</div>'
+          +'<div class="extra-title">'+(isInt?'🌍 ':'')+ex.name+'</div>'
           +'<div class="extra-meta">'
             +'<span class="meta-pill">📅 '+(saved.date||ex.date)+'</span>'
             +'<span class="meta-pill">📍 '+(saved.local||ex.local)+'</span>'
-            +(saved.vagas?'<span class="meta-pill">👥 '+saved.vagas+' vagas</span>':'')
+            +(ex.vagas?'<span class="meta-pill">👥 '+ex.vagas+' vagas (estimado)</span>':'')
           +'</div>'
         +'</div>'
         +'<span class="extra-chevron">▼</span>'
       +'</div>'
       +'<div class="extra-body">'
-        +(ex.sugestoes&&ex.sugestoes.length?'<div class="extra-names-row"><strong>Sugestões de participação:</strong> '+ex.sugestoes.join(', ')+'</div>':'')
+        +(ex.sugestoes&&ex.sugestoes.length?'<div class="extra-names-row"><strong>Interesse manifestado:</strong> '+ex.sugestoes.join(', ')+'</div>':'')
+        +'<div class="extra-reg-mini"><span>📋</span><span>'+(isInt?'<strong>Atenção especial:</strong> Eventos internacionais exigem aprovação do Plenário <em>e</em> encaminhamento prévio ao CONFEA (Art. 210, §2º). O processo estimado é de <strong>aproximadamente 4 meses</strong>. Inicie a proposta o quanto antes.':'Lembre-se: a inclusão deste evento no Plano de Trabalho requer aprovação do <strong>Plenário do CREA-PA</strong> (Art. 60, III c/c Art. 210). Prazo estimado: <strong>~4 meses</strong>. Salve os dados abaixo para subsidiar a proposta fundamentada.')+'</span></div>'
         +'<div class="edit-form">'
-          +'<div class="edit-form-title">✏️ Preencher dados orçamentários</div>'
+          +'<div class="edit-form-title">📝 Dados para subsidiar a proposta ao Plenário</div>'
           +'<div class="form-grid">'
-            +'<div class="form-group"><label>Data do evento</label><input class="form-input" id="f_date_'+ex.xid+'" type="text" placeholder="ex: 6 a 9 dez 2026" value="'+(saved.date||ex.date||'')+'"></div>'
+            +'<div class="form-group"><label>Data</label><input class="form-input" id="f_date_'+ex.xid+'" type="text" placeholder="Ex: 6 a 9 dez 2026" value="'+(saved.date||ex.date||'')+'"></div>'
             +'<div class="form-group"><label>Local</label><input class="form-input" id="f_local_'+ex.xid+'" type="text" placeholder="Cidade – UF" value="'+(saved.local||ex.local||'')+'"></div>'
-            +'<div class="form-group"><label>Nº de vagas</label><input class="form-input" id="f_vagas_'+ex.xid+'" type="number" min="1" placeholder="0" value="'+(saved.vagas||'')+'"></div>'
-            +'<div class="form-group"><label>Diárias (qtd)</label><input class="form-input" id="f_diarias_'+ex.xid+'" type="number" step="0.5" placeholder="0" value="'+(saved.diarias||'')+'" oninput="calcValor(\''+ex.xid+'\')"></div>'
-            +'<div class="form-group"><label>Valor da diária (R$)</label><input class="form-input" id="f_vdiaria_'+ex.xid+'" type="number" placeholder="829" value="'+(saved.vDiaria||'')+'" oninput="calcValor(\''+ex.xid+'\')"></div>'
-            +'<div class="form-group"><label>Passagem (R$)</label><input class="form-input" id="f_passagem_'+ex.xid+'" type="number" placeholder="0" value="'+(saved.passagem||'')+'" oninput="calcValor(\''+ex.xid+'\')"></div>'
-            +'<div class="form-group"><label>AT (R$)</label><input class="form-input" id="f_at_'+ex.xid+'" type="number" placeholder="185" value="'+(saved.at||'')+'" oninput="calcValor(\''+ex.xid+'\')"></div>'
-            +'<div class="form-group"><label>Inscrição (R$)</label><input class="form-input" id="f_inscricao_'+ex.xid+'" type="number" placeholder="0" value="'+(saved.inscricao||'')+'" oninput="calcValor(\''+ex.xid+'\')"></div>'
-            +'<div class="form-group"><label>Jeton (R$)</label><input class="form-input" id="f_jeton_'+ex.xid+'" type="number" placeholder="0" value="'+(saved.jeton||'')+'" oninput="calcValor(\''+ex.xid+'\')"></div>'
+            +'<div class="form-group"><label>Vagas solicitadas</label><input class="form-input" id="f_vagas_'+ex.xid+'" type="number" min="1" placeholder="0" value="'+(saved.vagas||'')+'"></div>'
+            +'<div class="form-group"><label>Diárias (qtd)</label><input class="form-input" id="f_diarias_'+ex.xid+'" type="number" step="0.5" placeholder="0" value="'+(saved.diarias||'')+'" oninput="calcValorExtra(\''+ex.xid+'\')"></div>'
+            +'<div class="form-group"><label>Valor diária (R$)</label><input class="form-input" id="f_vdiaria_'+ex.xid+'" type="number" placeholder="829" value="'+(saved.vDiaria||'')+'" oninput="calcValorExtra(\''+ex.xid+'\')"></div>'
+            +'<div class="form-group"><label>Passagem (R$)</label><input class="form-input" id="f_passagem_'+ex.xid+'" type="number" placeholder="0" value="'+(saved.passagem||'')+'" oninput="calcValorExtra(\''+ex.xid+'\')"></div>'
+            +'<div class="form-group"><label>AT (R$)</label><input class="form-input" id="f_at_'+ex.xid+'" type="number" placeholder="185" value="'+(saved.at||'')+'" oninput="calcValorExtra(\''+ex.xid+'\')"></div>'
+            +'<div class="form-group"><label>Inscrição (R$)</label><input class="form-input" id="f_inscricao_'+ex.xid+'" type="number" placeholder="0" value="'+(saved.inscricao||'')+'" oninput="calcValorExtra(\''+ex.xid+'\')"></div>'
+            +'<div class="form-group"><label>Jeton (R$)</label><input class="form-input" id="f_jeton_'+ex.xid+'" type="number" placeholder="0" value="'+(saved.jeton||'')+'" oninput="calcValorExtra(\''+ex.xid+'\')"></div>'
           +'</div>'
-          +'<div class="form-grid full" style="margin-top:8px">'
-            +'<div class="form-group"><label>Observações</label><input class="form-input" id="f_obs_'+ex.xid+'" type="text" placeholder="Informações adicionais..." value="'+(saved.obs||'')+'"></div>'
-          +'</div>'
-          +'<div class="valor-preview">'
-            +'<span>💰 Valor total estimado / conselheiro</span>'
-            +'<strong id="f_total_'+ex.xid+'">'+(saved.valor?'R$'+saved.valor.toLocaleString('pt-BR',{minimumFractionDigits:2}):'R$ —')+'</strong>'
-          +'</div>'
-          +'<div class="form-actions">'
-            +'<button class="btn-save" onclick="event.stopPropagation();saveExtraForm(\''+ex.xid+'\')">💾 Salvar rascunho</button>'
-            +'<button class="btn-promote" onclick="event.stopPropagation();promoteExtra(\''+ex.xid+'\')">✅ Mover para lista principal</button>'
-          +'</div>'
+          +'<div class="valor-preview"><span>💰 Custo estimado / conselheiro</span><strong id="f_total_'+ex.xid+'">'+(saved.valor?'R$'+saved.valor.toLocaleString('pt-BR',{minimumFractionDigits:2}):'R$ —')+'</strong></div>'
+          +'<div class="form-actions"><button class="btn-save" onclick="event.stopPropagation();saveExtraForm(\''+ex.xid+'\')">💾 Salvar rascunho</button></div>'
         +'</div>'
       +'</div>'
     +'</div>';
@@ -810,9 +715,7 @@ function renderExtra(){
 }
  
 // ============ INIT ============
-renderSummary();
-renderEvents();
-renderExtra();
+renderSummary();renderEvents();renderExtra();
 </script>
 </body>
 </html>
